@@ -1,0 +1,824 @@
+
+
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + +                                                                         + +
+ + +                      ASPEN PLUS CALCULATION REPORT                      + +
+ + +                                                                         + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+
+ ASPEN PLUS IS A TRADEMARK OF           HOTLINE:
+ ASPEN TECHNOLOGY, INC.                 U.S.A. 888/996-7100
+ 781/221-6400                           EUROPE (44) 1189-226555
+
+ PLATFORM: WINDOWS                                       FEBRUARY 3, 2020    
+ VERSION: 36.0   Build 254 Patchlevel 4                  MONDAY      
+ INSTALLATION:                                           7:02:54 P.M.        
+
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE    I
+                              RANKINE POWERPLANT                                
+
+
+
+      ASPEN PLUS (R) IS A PROPRIETARY PRODUCT OF ASPEN TECHNOLOGY, INC.
+      (ASPENTECH), AND MAY BE USED ONLY UNDER AGREEMENT WITH ASPENTECH.
+      RESTRICTED RIGHTS LEGEND:  USE, REPRODUCTION, OR DISCLOSURE BY THE
+      U.S. GOVERNMENT IS SUBJECT TO RESTRICTIONS SET FORTH IN 
+      (i) FAR 52.227-14, Alt. III, (ii) FAR 52.227-19, (iii) DFARS 
+      252.227-7013(c)(1)(ii), or (iv) THE ACCOMPANYING LICENSE AGREEMENT,
+      AS APPLICABLE. FOR PURPOSES OF THE FAR, THIS SOFTWARE SHALL BE DEEMED
+      TO BE "UNPUBLISHED" AND LICENSED WITH DISCLOSURE PROHIBITIONS.
+      CONTRACTOR/SUBCONTRACTOR: ASPEN TECHNOLOGY, INC. 20 CROSBY DRIVE,
+      BEDFORD, MA 01730.
+                               TABLE OF CONTENTS                                
+
+
+            RUN CONTROL SECTION....................................  1
+                 RUN CONTROL INFORMATION...........................  1
+                 DESCRIPTION.......................................  1
+
+            FLOWSHEET SECTION......................................  2
+                 FLOWSHEET CONNECTIVITY BY STREAMS.................  2
+                 FLOWSHEET CONNECTIVITY BY BLOCKS..................  2
+                 CONVERGENCE STATUS SUMMARY........................  2
+                 DESIGN-SPEC:  DS-1................................  2
+                 CONVERGENCE BLOCK:  $OLVER01......................  3
+                 COMPUTATIONAL SEQUENCE............................  3
+                 OVERALL FLOWSHEET BALANCE.........................  3
+
+            PHYSICAL PROPERTIES SECTION............................  5
+                 COMPONENTS........................................  5
+
+            U-O-S BLOCK SECTION....................................  6
+                 BLOCK:  B1       MODEL: PUMP......................  6
+                 BLOCK:  B2       MODEL: HEATX.....................  7
+                 HEATX COLD-TQCU B2       TQCURV INLET.............  9
+                 HEATX HOT-TQCUR B2       TQCURV INLET............. 10
+                 BLOCK:  B3       MODEL: HEATER.................... 10
+                 BLOCK:  B4       MODEL: COMPR..................... 11
+                 BLOCK:  B5       MODEL: HEATER.................... 13
+                 BLOCK:  B6       MODEL: RSTOIC.................... 14
+
+            STREAM SECTION......................................... 16
+                 1 2 3 4 5......................................... 16
+                 6 7 8 9........................................... 17
+                 Q................................................. 18
+
+            PROBLEM STATUS SECTION................................. 19
+                 BLOCK STATUS...................................... 19
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 1   
+                              RANKINE POWERPLANT                                
+                              RUN CONTROL SECTION                               
+
+ RUN CONTROL INFORMATION                 
+ -----------------------
+
+ THIS COPY OF ASPEN PLUS LICENSED TO NORTH CAROLINA STATE UNI        
+
+ TYPE OF RUN: NEW 
+
+ INPUT FILE NAME: _5241xgp.inm
+
+ OUTPUT PROBLEM DATA FILE NAME: _5241xgp 
+ LOCATED IN:                    
+
+
+ PDF SIZE USED FOR INPUT TRANSLATION:
+   NUMBER OF FILE RECORDS (PSIZE) =     0
+   NUMBER OF IN-CORE RECORDS      =   256
+ PSIZE NEEDED FOR SIMULATION    =   256
+
+ CALLING PROGRAM NAME:          apmain  
+ LOCATED IN: C:\Program Files (x86)\AspenTech\Aspen Plus V10.0\Engine\\xeq
+
+ SIMULATION REQUESTED FOR ENTIRE FLOWSHEET
+
+ DESCRIPTION                             
+ -----------
+
+        Chemical Simulation with English Units : F, psi, lb/hr, lbmol/hr,   
+        Btu/hr, cuft/hr. Property Method: NRTL Flow basis for input: Mole   
+        Stream report composition: Mole flow                                
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 2   
+                              RANKINE POWERPLANT                                
+                               FLOWSHEET SECTION                                
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+ ---------------------------------
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   1          ----       B1             7          ----       B6      
+   2          B1         B2             9          B2         ----    
+   3          B2         B3             4          B3         B4      
+   5          B4         B5             6          B5         ----    
+   8          B6         B2             Q          B6         B3      
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+ --------------------------------
+
+   BLOCK        INLETS                         OUTLETS
+   B1           1                              2                           
+   B2           8 2                            9 3                         
+   B3           3 Q                            4                           
+   B4           4                              5                           
+   B5           5                              6                           
+   B6           7                              8 Q                         
+
+ CONVERGENCE STATUS SUMMARY              
+ --------------------------
+
+   DESIGN-SPEC SUMMARY
+   ===================
+
+
+   DESIGN                                                            CONV
+   SPEC      ERROR        TOLERANCE    ERR/TOL      VARIABLE   STAT  BLOCK
+   ------    -----        ---------    -------      --------   ----  -----
+   DS-1     -0.26329E-01  0.50000     -0.52659E-01   579.61     #    $OLVER01
+
+   #  = CONVERGED
+   *  = NOT CONVERGED
+   LB = AT LOWER BOUNDS
+   UB = AT UPPER BOUNDS
+
+ DESIGN-SPEC:  DS-1                      
+ ------------------
+
+   SAMPLED VARIABLES:
+     T4       : TEMPERATURE IN STREAM 4 SUBSTREAM MIXED 
+
+   SPECIFICATION:
+     MAKE T4 APPROACH 800.000    
+     WITHIN          0.50000                                  
+
+   MANIPULATED VARIABLES:
+     VARY     : TOTAL MOLEFLOW IN STREAM 7 SUBSTREAM MIXED  
+     LOWER LIMIT =         300.000                    LBMOL/HR        
+     UPPER LIMIT =       1,000.00                     LBMOL/HR        
+     FINAL VALUE =         579.609                    LBMOL/HR        
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 3   
+                              RANKINE POWERPLANT                                
+                               FLOWSHEET SECTION                                
+
+ DESIGN-SPEC:  DS-1 (CONTINUED)                      
+
+   VALUES OF ACCESSED FORTRAN VARIABLES:
+     VARIABLE      VALUE AT START      FINAL VALUE     UNITS
+                      OF LOOP                               
+     --------      --------------      -----------     -----
+     T4              544.201            799.974        F               
+
+ CONVERGENCE BLOCK:  $OLVER01            
+ ----------------------------
+     SPECS: DS-1
+     MAXIT=   30 STEP-SIZE=    1.0000    % OF RANGE
+                 MAX-STEP=       100.    % OF RANGE
+                 XTOL=       1.000000E-08
+     THE NEW ALGORITHM WAS USED WITH BRACKETING=NO      
+     METHOD: SECANT        STATUS: CONVERGED       
+     TOTAL NUMBER OF ITERATIONS:     5
+
+                          *** FINAL VALUES ***
+
+
+VAR#  MANIPUL/TEAR-VAR VARIABLE DESCRIPTION                              UNIT         VALUE       PREV VALUE       ERR/TOL
+----  ---------------- -------------------------                    ----------- ------------   ------------   ------------
+   1  TOTAL MOLEFLOW   7.MIXED.TOTAL.MOLEFLOW                       LBMOL/HR      579.6094       580.4232     -5.2659-02      
+
+                          *** ITERATION HISTORY *** 
+
+     DESIGN-SPEC ID: DS-1                                                                                     
+     ITERATED:  TOTAL MOLEFLOW IN STREAM 7 SUBSTREAM MIXED  
+
+     ITERATION  VARIABLE         ERROR          ERR/TOL 
+     ---------  --------         -----          ------- 
+          1      500.0           -255.8         -511.6    
+          2      507.0           -236.9         -473.7    
+          3      594.5            53.52          107.0    
+          4      580.4            2.875          5.751    
+          5      579.6          -0.2633E-01    -0.5266E-01
+
+ COMPUTATIONAL SEQUENCE                  
+ ----------------------
+
+ SEQUENCE USED WAS:
+    B1                                                                     
+    $OLVER01 B6 B2 B3                                                      
+    (RETURN $OLVER01)                                                      
+    B4 B5                                                                  
+
+ OVERALL FLOWSHEET BALANCE               
+ -------------------------
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 4   
+                              RANKINE POWERPLANT                                
+                               FLOWSHEET SECTION                                
+
+ OVERALL FLOWSHEET BALANCE (CONTINUED)               
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                              IN          OUT       GENERATION   RELATIVE DIFF.
+   CONVENTIONAL COMPONENTS  
+           (LBMOL/HR)
+      CH4                 52.6865       0.00000      -52.6865       0.00000    
+      O2                  110.647       5.27445      -105.373      0.144488E-15
+      CO2                 0.00000       52.6865       52.6865       0.00000    
+      H2O                 824.300       929.673       105.373     -0.122287E-15
+      N2                  416.275       416.275       0.00000       0.00000    
+   TOTAL BALANCE
+   MOLE(LBMOL/HR)         1403.91       1403.91      0.137679E-13   0.00000    
+   MASS(LB/HR   )         30897.1       30897.1                    0.235490E-15
+   ENTHALPY(BTU/HR  )   -0.999499E+08 -0.118147E+09                0.154023    
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             21130.9      LB/HR           
+    PRODUCT STREAMS CO2E          2318.72      LB/HR           
+    NET STREAMS CO2E PRODUCTION  -18812.2      LB/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      LB/HR           
+    TOTAL CO2E PRODUCTION        -18812.2      LB/HR           
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 5   
+                              RANKINE POWERPLANT                                
+                          PHYSICAL PROPERTIES SECTION                           
+
+ COMPONENTS                              
+ ----------
+
+  ID       TYPE  ALIAS          NAME
+   CH4      C     CH4            METHANE                         
+   O2       C     O2             OXYGEN                          
+   CO2      C     CO2            CARBON-DIOXIDE                  
+   H2O      C     H2O            WATER                           
+   N2       C     N2             NITROGEN                        
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 6   
+                              RANKINE POWERPLANT                                
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B1       MODEL: PUMP            
+ ----------------------------
+   INLET STREAM:          1       
+   OUTLET STREAM:         2       
+   PROPERTY OPTION SET:   STEAM-TA  ASME STEAM TABLE EQUATION OF STATE          
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(LBMOL/HR)            824.300         824.300         0.00000    
+       MASS(LB/HR   )            14850.0         14850.0         0.00000    
+       ENTHALPY(BTU/HR  )      -0.980736E+08   -0.980368E+08   -0.375722E-03
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      LB/HR           
+    PRODUCT STREAMS CO2E          0.00000      LB/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      LB/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      LB/HR           
+    TOTAL CO2E PRODUCTION         0.00000      LB/HR           
+
+                          ***  INPUT DATA  ***
+    OUTLET PRESSURE  PSIA                                 600.000      
+    PUMP EFFICIENCY                                         0.70000    
+    DRIVER EFFICIENCY                                       1.00000    
+
+    FLASH SPECIFICATIONS:
+    LIQUID PHASE CALCULATION
+    NO FLASH PERFORMED
+    MAXIMUM NUMBER OF ITERATIONS                            30
+    TOLERANCE                                               0.000100000
+
+                           ***  RESULTS  ***
+    VOLUMETRIC FLOW RATE  CUFT/HR                         258.127      
+    PRESSURE CHANGE  PSI                                  540.000      
+    NPSH AVAILABLE   FT-LBF/LB                              0.0        
+    FLUID POWER  HP                                        10.1374     
+    BRAKE POWER  HP                                        14.4820     
+    ELECTRICITY  KW                                        10.7992     
+    PUMP EFFICIENCY USED                                    0.70000    
+    NET WORK REQUIRED  HP                                  14.4820     
+    HEAD DEVELOPED FT-LBF/LB                            1,351.65       
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 7   
+                              RANKINE POWERPLANT                                
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B2       MODEL: HEATX           
+ -----------------------------
+   HOT SIDE:
+   ---------
+   INLET STREAM:             8       
+   OUTLET STREAM:            9       
+   PROPERTY OPTION SET:   STEAM-TA  ASME STEAM TABLE EQUATION OF STATE          
+   COLD SIDE:
+   ----------
+   INLET STREAM:             2       
+   OUTLET STREAM:            3       
+   PROPERTY OPTION SET:   STEAM-TA  ASME STEAM TABLE EQUATION OF STATE          
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(LBMOL/HR)            1403.91         1403.91         0.00000    
+       MASS(LB/HR   )            30897.1         30897.1         0.00000    
+       ENTHALPY(BTU/HR  )      -0.114237E+09   -0.114237E+09     0.00000    
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             2318.72      LB/HR           
+    PRODUCT STREAMS CO2E          2318.72      LB/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      LB/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      LB/HR           
+    TOTAL CO2E PRODUCTION         0.00000      LB/HR           
+
+                          ***  INPUT DATA  ***
+
+   FLASH SPECS FOR HOT SIDE:
+   TWO    PHASE      FLASH
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+
+   FLASH SPECS FOR COLD SIDE:
+   TWO    PHASE      FLASH
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+
+   FLOW DIRECTION AND SPECIFICATION:
+     COUNTERCURRENT   HEAT EXCHANGER
+     SPECIFIED HOT OUTLET TEMP     
+     SPECIFIED VALUE                F                      320.0000
+     LMTD CORRECTION FACTOR                                  1.00000
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 8   
+                              RANKINE POWERPLANT                                
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B2       MODEL: HEATX (CONTINUED)           
+
+   PRESSURE SPECIFICATION:
+     HOT  SIDE PRESSURE DROP        PSI                      0.0000
+     COLD SIDE PRESSURE DROP        PSI                      0.0000
+
+   HEAT TRANSFER COEFFICIENT SPECIFICATION:
+     OVERALL COEFFICIENT            BTU/HR-SQFT-R          100.0000
+
+                        ***  OVERALL RESULTS  ***
+
+   STREAMS:
+                   --------------------------------------
+                   |                                    |
+   8         ----->|                HOT                 |-----> 9       
+   T=  9.0000D+02  |                                    |       T=  3.2000D+02
+   P=  1.4696D+01  |                                    |       P=  1.4696D+01
+   V=  1.0000D+00  |                                    |       V=  1.0000D+00
+                   |                                    |
+   3         <-----|                COLD                |<----- 2       
+   T=  4.6187D+02  |                                    |       T=  2.9412D+02
+   P=  6.0000D+02  |                                    |       P=  6.0000D+02
+   V=  0.0000D+00  |                                    |       V=  0.0000D+00
+                   --------------------------------------
+
+   DUTY AND AREA:
+     CALCULATED HEAT DUTY           BTU/HR             2656938.8825
+     CALCULATED (REQUIRED) AREA     SQFT                   182.3356
+     ACTUAL EXCHANGER AREA          SQFT                   182.3356
+     PER CENT OVER-DESIGN                                    0.0000
+
+   HEAT TRANSFER COEFFICIENT:
+     AVERAGE COEFFICIENT (DIRTY)    BTU/HR-SQFT-R          100.0000
+     UA (DIRTY)                     BTU/HR-R             18233.5564
+
+   LOG-MEAN TEMPERATURE DIFFERENCE:
+     LMTD CORRECTION FACTOR                                  1.0000
+     LMTD (CORRECTED)               F                      145.7170
+     NUMBER OF SHELLS IN SERIES                               1
+
+   PRESSURE DROP:
+     HOTSIDE, TOTAL                 PSI                      0.0000
+     COLDSIDE, TOTAL                PSI                      0.0000
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 9   
+                              RANKINE POWERPLANT                                
+                              U-O-S BLOCK SECTION                               
+
+ HEATX COLD-TQCU B2       TQCURV INLET   
+ -------------------------------------
+   PRESSURE PROFILE:      CONSTANT2   
+   PRESSURE DROP:         0.0         PSI             
+   PROPERTY OPTION SET:   STEAM-TA  ASME STEAM TABLE EQUATION OF STATE          
+
+ -----------------------------------------------------
+ !  DUTY      !  PRES      !  TEMP      !  VFRAC     !
+ !            !            !            !            !
+ !            !            !            !            !
+ !            !            !            !            !
+ !  BTU/HR    !  PSIA      !  F         !            !
+ !            !            !            !            !
+ !============!============!============!============!
+ !     0.0    !   600.0000 !   461.8692 !     0.0    !
+ !  1.2652+05 !   600.0000 !   454.3262 !     0.0    !
+ !  2.5304+05 !   600.0000 !   446.7244 !     0.0    !
+ !  3.7956+05 !   600.0000 !   439.0666 !     0.0    !
+ !  5.0608+05 !   600.0000 !   431.3555 !     0.0    !
+ !------------+------------+------------+------------!
+ !  6.3260+05 !   600.0000 !   423.5937 !     0.0    !
+ !  7.5913+05 !   600.0000 !   415.7834 !     0.0    !
+ !  8.8565+05 !   600.0000 !   407.9270 !     0.0    !
+ !  1.0122+06 !   600.0000 !   400.0266 !     0.0    !
+ !  1.1387+06 !   600.0000 !   392.0842 !     0.0    !
+ !------------+------------+------------+------------!
+ !  1.2652+06 !   600.0000 !   384.1019 !     0.0    !
+ !  1.3917+06 !   600.0000 !   376.0814 !     0.0    !
+ !  1.5183+06 !   600.0000 !   368.0244 !     0.0    !
+ !  1.6448+06 !   600.0000 !   359.9326 !     0.0    !
+ !  1.7713+06 !   600.0000 !   351.8076 !     0.0    !
+ !------------+------------+------------+------------!
+ !  1.8978+06 !   600.0000 !   343.6509 !     0.0    !
+ !  2.0243+06 !   600.0000 !   335.4639 !     0.0    !
+ !  2.1509+06 !   600.0000 !   327.2480 !     0.0    !
+ !  2.2774+06 !   600.0000 !   319.0046 !     0.0    !
+ !  2.4039+06 !   600.0000 !   310.7350 !     0.0    !
+ !------------+------------+------------+------------!
+ !  2.5304+06 !   600.0000 !   302.4404 !     0.0    !
+ !  2.6569+06 !   600.0000 !   294.1221 !     0.0    !
+ -----------------------------------------------------
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 10  
+                              RANKINE POWERPLANT                                
+                              U-O-S BLOCK SECTION                               
+
+ HEATX HOT-TQCUR B2       TQCURV INLET   
+ -------------------------------------
+   PRESSURE PROFILE:      CONSTANT2   
+   PRESSURE DROP:         0.0         PSI             
+   PROPERTY OPTION SET:   STEAM-TA  ASME STEAM TABLE EQUATION OF STATE          
+
+ -----------------------------------------------------
+ !  DUTY      !  PRES      !  TEMP      !  VFRAC     !
+ !            !            !            !            !
+ !            !            !            !            !
+ !            !            !            !            !
+ !  BTU/HR    !  PSIA      !  F         !            !
+ !            !            !            !            !
+ !============!============!============!============!
+ !     0.0    !    14.6959 !   900.0000 !     1.0000 !
+ !  1.2652+05 !    14.6959 !   873.2568 !     1.0000 !
+ !  2.5304+05 !    14.6959 !   846.4144 !     1.0000 !
+ !  3.7956+05 !    14.6959 !   819.4720 !     1.0000 !
+ !  5.0608+05 !    14.6959 !   792.4289 !     1.0000 !
+ !------------+------------+------------+------------!
+ !  6.3260+05 !    14.6959 !   765.2847 !     1.0000 !
+ !  7.5913+05 !    14.6959 !   738.0397 !     1.0000 !
+ !  8.8565+05 !    14.6959 !   710.6944 !     1.0000 !
+ !  1.0122+06 !    14.6959 !   683.2497 !     1.0000 !
+ !  1.1387+06 !    14.6959 !   655.7076 !     1.0000 !
+ !------------+------------+------------+------------!
+ !  1.2652+06 !    14.6959 !   628.0705 !     1.0000 !
+ !  1.3917+06 !    14.6959 !   600.3420 !     1.0000 !
+ !  1.5183+06 !    14.6959 !   572.5268 !     1.0000 !
+ !  1.6448+06 !    14.6959 !   544.6308 !     1.0000 !
+ !  1.7713+06 !    14.6959 !   516.6619 !     1.0000 !
+ !------------+------------+------------+------------!
+ !  1.8978+06 !    14.6959 !   488.6296 !     1.0000 !
+ !  2.0243+06 !    14.6959 !   460.5460 !     1.0000 !
+ !  2.1509+06 !    14.6959 !   432.4258 !     1.0000 !
+ !  2.2774+06 !    14.6959 !   404.2871 !     1.0000 !
+ !  2.4039+06 !    14.6959 !   376.1516 !     1.0000 !
+ !------------+------------+------------+------------!
+ !  2.5304+06 !    14.6959 !   348.0455 !     1.0000 !
+ !  2.6569+06 !    14.6959 !   320.0000 !     1.0000 !
+ -----------------------------------------------------
+
+ BLOCK:  B3       MODEL: HEATER          
+ ------------------------------
+   INLET STREAM:          3       
+   INLET HEAT STREAM:     Q       
+   OUTLET STREAM:         4       
+   PROPERTY OPTION SET:   STEAM-TA  ASME STEAM TABLE EQUATION OF STATE          
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 11  
+                              RANKINE POWERPLANT                                
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B3       MODEL: HEATER (CONTINUED)          
+    TOTAL BALANCE
+       MOLE(LBMOL/HR)            824.300         824.300         0.00000    
+       MASS(LB/HR   )            14850.0         14850.0         0.00000    
+       ENTHALPY(BTU/HR  )      -0.810559E+08   -0.810559E+08   -0.183838E-15
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      LB/HR           
+    PRODUCT STREAMS CO2E          0.00000      LB/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      LB/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      LB/HR           
+    TOTAL CO2E PRODUCTION         0.00000      LB/HR           
+
+                          ***  INPUT DATA  ***
+   TWO    PHASE  PQ  FLASH
+   SPECIFIED PRESSURE                   PSIA                    600.000      
+   DUTY FROM INLET HEAT STREAM(S)       BTU/HR                    0.143239+08
+   MAXIMUM NO. ITERATIONS                                        30
+   CONVERGENCE TOLERANCE                                          0.000100000
+
+
+
+                           ***  RESULTS  ***
+   OUTLET TEMPERATURE    F                                    799.97    
+   OUTLET PRESSURE       PSIA                                 600.00    
+   OUTLET VAPOR FRACTION                                      1.0000    
+
+
+
+   V-L PHASE EQUILIBRIUM : 
+
+      COMP              F(I)           X(I)           Y(I)           K(I)      
+      H2O               1.0000         1.0000         1.0000         1.6775    
+
+ BLOCK:  B4       MODEL: COMPR           
+ -----------------------------
+   INLET STREAM:          4       
+   OUTLET STREAM:         5       
+   PROPERTY OPTION SET:   STEAM-TA  ASME STEAM TABLE EQUATION OF STATE          
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 12  
+                              RANKINE POWERPLANT                                
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B4       MODEL: COMPR (CONTINUED)           
+    TOTAL BALANCE
+       MOLE(LBMOL/HR)            824.300         824.300         0.00000    
+       MASS(LB/HR   )            14850.0         14850.0         0.00000    
+       ENTHALPY(BTU/HR  )      -0.810559E+08   -0.835942E+08    0.303645E-01
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      LB/HR           
+    PRODUCT STREAMS CO2E          0.00000      LB/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      LB/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      LB/HR           
+    TOTAL CO2E PRODUCTION         0.00000      LB/HR           
+
+                           ***  INPUT DATA  ***
+
+   ISENTROPIC TURBINE
+    OUTLET PRESSURE  PSIA                                   60.0000     
+    ISENTROPIC EFFICIENCY                                    0.72000    
+    MECHANICAL EFFICIENCY                                    1.00000    
+
+                           ***  RESULTS  ***
+
+    INDICATED  HORSEPOWER REQUIREMENT  HP                 -997.587      
+    BRAKE      HORSEPOWER REQUIREMENT  HP                 -997.587      
+    NET WORK REQUIRED                  HP                 -997.587      
+    POWER LOSSES                       HP                    0.0        
+    ISENTROPIC HORSEPOWER REQUIREMENT  HP               -1,385.54       
+    CALCULATED OUTLET TEMP  F                              407.964      
+    ISENTROPIC TEMPERATURE  F                              292.692      
+    EFFICIENCY (POLYTR/ISENTR) USED                          0.72000    
+    OUTLET VAPOR FRACTION                                    1.00000    
+    HEAD DEVELOPED,       FT-LBF/LB                   -184,738.         
+    MECHANICAL EFFICIENCY USED                               1.00000    
+    INLET HEAT CAPACITY RATIO                                1.35207    
+    INLET VOLUMETRIC FLOW RATE , CUFT/HR                17,659.7        
+    OUTLET VOLUMETRIC FLOW RATE, CUFT/HR               125,311.         
+    INLET  COMPRESSIBILITY FACTOR                            0.95092    
+    OUTLET COMPRESSIBILITY FACTOR                            0.97963    
+    AV. ISENT. VOL. EXPONENT                                 1.28629    
+    AV. ISENT. TEMP EXPONENT                                 1.28836    
+    AV. ACTUAL VOL. EXPONENT                                 1.17508    
+    AV. ACTUAL TEMP EXPONENT                                 1.19319    
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 13  
+                              RANKINE POWERPLANT                                
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B4       MODEL: COMPR (CONTINUED)           
+
+ BLOCK:  B5       MODEL: HEATER          
+ ------------------------------
+   INLET STREAM:          5       
+   OUTLET STREAM:         6       
+   PROPERTY OPTION SET:   STEAM-TA  ASME STEAM TABLE EQUATION OF STATE          
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(LBMOL/HR)            824.300         824.300         0.00000    
+       MASS(LB/HR   )            14850.0         14850.0         0.00000    
+       ENTHALPY(BTU/HR  )      -0.835942E+08   -0.992902E+08    0.158082    
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      LB/HR           
+    PRODUCT STREAMS CO2E          0.00000      LB/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      LB/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      LB/HR           
+    TOTAL CO2E PRODUCTION         0.00000      LB/HR           
+
+                          ***  INPUT DATA  ***
+   TWO    PHASE  PV  FLASH
+   SPECIFIED PRESSURE                   PSIA                     14.6959     
+   VAPOR FRACTION                                                 0.0        
+   MAXIMUM NO. ITERATIONS                                        30
+   CONVERGENCE TOLERANCE                                          0.000100000
+
+
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 14  
+                              RANKINE POWERPLANT                                
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B5       MODEL: HEATER (CONTINUED)          
+
+                           ***  RESULTS  ***
+   OUTLET TEMPERATURE    F                                    211.98    
+   OUTLET PRESSURE       PSIA                                 14.696    
+   HEAT DUTY             BTU/HR                             -0.15696E+08
+   OUTLET VAPOR FRACTION                                      0.0000    
+
+
+
+   V-L PHASE EQUILIBRIUM : 
+
+      COMP              F(I)           X(I)           Y(I)           K(I)      
+      H2O               1.0000         1.0000         1.0000        0.99998    
+
+ BLOCK:  B6       MODEL: RSTOIC          
+ ------------------------------
+   INLET STREAM:          7       
+   OUTLET STREAM:         8       
+   OUTLET HEAT STREAM:    Q       
+   PROPERTY OPTION SET:   STEAM-TA  ASME STEAM TABLE EQUATION OF STATE          
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                              IN          OUT       GENERATION   RELATIVE DIFF.
+   TOTAL BALANCE
+   MOLE(LBMOL/HR)         579.609       579.609      0.137679E-13   0.00000    
+   MASS(LB/HR   )         16047.1       16047.1                    0.226706E-15
+   ENTHALPY(BTU/HR  )   -0.187631E+07 -0.187631E+07                0.173725E-14
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             21130.9      LB/HR           
+    PRODUCT STREAMS CO2E          2318.72      LB/HR           
+    NET STREAMS CO2E PRODUCTION  -18812.2      LB/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      LB/HR           
+    TOTAL CO2E PRODUCTION        -18812.2      LB/HR           
+
+                          ***  INPUT DATA  ***
+   STOICHIOMETRY MATRIX:
+
+    REACTION #   1:
+     SUBSTREAM MIXED   :
+     CH4       -1.00    O2        -2.00    CO2        1.00    H2O        2.00    
+
+
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 15  
+                              RANKINE POWERPLANT                                
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B6       MODEL: RSTOIC (CONTINUED)          
+   REACTION CONVERSION SPECS: NUMBER=    1
+     REACTION #   1:
+     SUBSTREAM:MIXED    KEY COMP:CH4      CONV FRAC:  1.000    
+
+
+
+
+   TWO    PHASE  TP  FLASH
+   SPECIFIED TEMPERATURE F                                 900.000      
+   SPECIFIED PRESSURE    PSIA                               14.6959     
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+   SIMULTANEOUS REACTIONS
+   GENERATE COMBUSTION REACTIONS FOR FEED SPECIES          NO  
+
+                           ***  RESULTS  ***
+   OUTLET TEMPERATURE    F                                    900.00    
+   OUTLET PRESSURE       PSIA                                 14.696    
+   HEAT DUTY             BTU/HR                             -0.14324E+08
+   VAPOR FRACTION                                             1.0000    
+
+
+
+   REACTION EXTENTS:
+
+      REACTION          REACTION
+      NUMBER            EXTENT  
+                        LBMOL/HR        
+      1                  52.686    
+
+   V-L PHASE EQUILIBRIUM : 
+
+      COMP              F(I)           X(I)           Y(I)           K(I)      
+      O2               0.91000E-02    0.91000E-02    0.91000E-02     MISSING 
+      CO2              0.90900E-01    0.90900E-01    0.90900E-01     MISSING 
+      H2O              0.18180        0.18180        0.18180         MISSING 
+      N2               0.71820        0.71820        0.71820         MISSING 
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 16  
+                              RANKINE POWERPLANT                                
+                                 STREAM SECTION                                 
+
+ 1 2 3 4 5                                       
+ ---------
+
+ STREAM ID               1          2          3          4          5       
+ FROM :                  ----       B1         B2         B3         B4      
+ TO   :                  B1         B2         B3         B4         B5      
+
+ SUBSTREAM: MIXED   
+ PHASE:                  LIQUID     LIQUID     LIQUID     VAPOR      VAPOR  
+ COMPONENTS: LBMOL/HR        
+   CH4                    0.0        0.0        0.0        0.0        0.0   
+   O2                     0.0        0.0        0.0        0.0        0.0   
+   CO2                    0.0        0.0        0.0        0.0        0.0   
+   H2O                  824.3003   824.3003   824.3003   824.3003   824.3003
+   N2                     0.0        0.0        0.0        0.0        0.0   
+ TOTAL FLOW:     
+   LBMOL/HR             824.3003   824.3003   824.3003   824.3003   824.3003
+   LB/HR               1.4850+04  1.4850+04  1.4850+04  1.4850+04  1.4850+04
+   CUFT/HR              258.1275   257.7379   291.4459  1.7660+04  1.2531+05
+ STATE VARIABLES:
+   TEMP   F             292.6917   294.1221   461.8692   799.9737   407.9639
+   PRES   PSIA           60.0000   600.0000   600.0000   600.0000    60.0000
+   VFRAC                  0.0        0.0        0.0        1.0000     1.0000
+   LFRAC                  1.0000     1.0000     1.0000     0.0        0.0   
+   SFRAC                  0.0        0.0        0.0        0.0        0.0   
+ ENTHALPY:       
+   BTU/LBMOL          -1.1898+05 -1.1893+05 -1.1571+05 -9.8333+04 -1.0141+05
+   BTU/LB             -6604.2835 -6601.8021 -6422.8837 -5458.3130 -5629.2418
+   BTU/HR             -9.8074+07 -9.8037+07 -9.5380+07 -8.1056+07 -8.3594+07
+ ENTROPY:        
+   BTU/LBMOL-R          -32.8754   -32.8584   -29.0040   -11.1191    -9.6264
+   BTU/LB-R              -1.8249    -1.8239    -1.6100    -0.6172    -0.5343
+ DENSITY:        
+   LBMOL/CUFT             3.1934     3.1982     2.8283  4.6677-02  6.5780-03
+   LB/CUFT               57.5297    57.6167    50.9529     0.8409     0.1185
+ AVG MW                  18.0153    18.0153    18.0153    18.0153    18.0153
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 17  
+                              RANKINE POWERPLANT                                
+                                 STREAM SECTION                                 
+
+ 6 7 8 9                                         
+ -------
+
+ STREAM ID               6          7          8          9       
+ FROM :                  B5         ----       B6         B2      
+ TO   :                  ----       B6         B2         ----    
+
+ SUBSTREAM: MIXED   
+ PHASE:                  LIQUID     VAPOR      VAPOR      VAPOR  
+ COMPONENTS: LBMOL/HR        
+   CH4                    0.0       52.6865     0.0        0.0   
+   O2                     0.0      110.6474     5.2744     5.2744
+   CO2                    0.0        0.0       52.6865    52.6865
+   H2O                  824.3003     0.0      105.3730   105.3730
+   N2                     0.0      416.2755   416.2755   416.2755
+ TOTAL FLOW:     
+   LBMOL/HR             824.3003   579.6094   579.6094   579.6094
+   LB/HR               1.4850+04  1.6047+04  1.6047+04  1.6047+04
+   CUFT/HR              248.2676  7.4926+04  5.7496+05  3.2743+05
+ STATE VARIABLES:
+   TEMP   F             211.9832    70.0000   900.0000   320.0000
+   PRES   PSIA           14.6959     1.0000    14.6959    14.6959
+   VFRAC                  0.0        1.0000     1.0000     1.0000
+   LFRAC                  1.0000     0.0        0.0        0.0   
+   SFRAC                  0.0        0.0        0.0        0.0   
+ ENTHALPY:       
+   BTU/LBMOL          -1.2045+05 -3237.1994 -2.7950+04 -3.2534+04
+   BTU/LB             -6686.2109  -116.9249 -1009.5369 -1175.1077
+   BTU/HR             -9.9290+07 -1.8763+06 -1.6200+07 -1.8857+07
+ ENTROPY:        
+   BTU/LBMOL-R          -34.9460    -3.3954     6.8310     2.4466
+   BTU/LB-R              -1.9398    -0.1226     0.2467  8.8369-02
+ DENSITY:        
+   LBMOL/CUFT             3.3202  7.7358-03  1.0081-03  1.7702-03
+   LB/CUFT               59.8145     0.2142  2.7910-02  4.9009-02
+ AVG MW                  18.0153    27.6861    27.6861    27.6861
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 18  
+                              RANKINE POWERPLANT                                
+                                 STREAM SECTION                                 
+
+ Q                                               
+ -
+
+ STREAM ID               Q       
+ FROM :                  B6      
+ TO   :                  B3      
+ CLASS:                  HEAT    
+
+ STREAM ATTRIBUTES:
+ HEAT    
+ Q        BTU/HR        1.4324+07
+ TBEG     F              900.0000
+ TEND     F               70.0000
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 19  
+                              RANKINE POWERPLANT                                
+                             PROBLEM STATUS SECTION                             
+
+ BLOCK STATUS                            
+ ------------
+
+ ****************************************************************************
+ *                                                                          *
+ * Calculations were completed normally                                     *
+ *                                                                          *
+ * All Unit Operation blocks were completed normally                        *
+ *                                                                          *
+ * Initial enthalpy calculations completed with physical property errors    *
+ * for the following streams:                                               *
+ *   7                                                                      *
+ *                                                                          *
+ * All Convergence blocks were completed normally                           *
+ *                                                                          *
+ ****************************************************************************

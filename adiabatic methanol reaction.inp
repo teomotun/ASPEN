@@ -1,0 +1,82 @@
+;
+;Input Summary created by Aspen Plus Rel. 36.0 at 15:00:37 Mon Feb 3, 2020
+;Directory C:\Users\teomotun\Desktop\Adiabatic Methanol Reaction  Filename C:\Users\teomotun\Desktop\adiabatic methanol reaction.inp
+;
+
+
+DYNAMICS
+    DYNAMICS RESULTS=ON
+
+TITLE 'Adiabatic conversion of methanol vapor to dme' 
+
+IN-UNITS MET VOLUME-FLOW='l/hr' ENTHALPY-FLO='kcal/hr'  &
+        HEAT-TRANS-C='kcal/hr-sqm-K' TEMPERATURE=C DELTA-T=C  &
+        HEAD=meter HEAT=kcal MOLE-CONC='mol/l' SHORT-LENGTH=mm 
+
+DEF-STREAMS CONVEN ALL 
+
+MODEL-OPTION 
+
+DESCRIPTION "
+    Specialty Chemicals Simulation with Metric Units : 
+    C, atm, kg/hr, kmol/hr, kcal/hr, l/hr. 
+      
+    Property Method: NRTL 
+      
+    Flow basis for input: Mass 
+      
+    Stream report composition: Mass flow 
+    "
+
+DATABANKS 'APV100 PURE36' / 'APV100 AQUEOUS' / 'APV100 SOLIDS' &
+         / 'APV100 INORGANIC' / 'APESV100 AP-EOS' /  &
+        'NISTV100 NIST-TRC' / NOASPENPCD
+
+PROP-SOURCES 'APV100 PURE36' / 'APV100 AQUEOUS' /  &
+        'APV100 SOLIDS' / 'APV100 INORGANIC' / 'APESV100 AP-EOS' &
+         / 'NISTV100 NIST-TRC'
+
+COMPONENTS 
+    METHANOL CH4O / 
+    DME C2H6O-1 / 
+    H2O H2O 
+
+SOLVE 
+    RUN-MODE MODE=SIM 
+
+FLOWSHEET 
+    BLOCK B1 IN=S1 OUT=S2 
+
+PROPERTIES NRTL 
+
+USER-PROPS DRUSR2 1 2 3 
+
+PROP-DATA NRTL-1
+    IN-UNITS MET VOLUME-FLOW='l/hr' ENTHALPY-FLO='kcal/hr'  &
+        HEAT-TRANS-C='kcal/hr-sqm-K' TEMPERATURE=C DELTA-T=C  &
+        HEAD=meter HEAT=kcal MOLE-CONC='mol/l' SHORT-LENGTH=mm 
+    PROP-LIST NRTL 
+    BPVAL METHANOL DME 0.0 653.0063000 .2951000000 0.0 0.0  &
+        0.0 0.0 0.0 
+    BPVAL DME METHANOL 0.0 -18.93720000 .2951000000 0.0 0.0  &
+        0.0 0.0 0.0 
+    BPVAL METHANOL H2O -.6930000000 172.9871000 .3000000000 0.0  &
+        0.0 0.0 24.99000000 100.0000000 
+    BPVAL H2O METHANOL 2.732200000 -617.2687000 .3000000000 0.0  &
+        0.0 0.0 24.99000000 100.0000000 
+
+STREAM S1 
+    SUBSTREAM MIXED TEMP=150. PRES=1. MOLE-FLOW=1. 
+    MOLE-FRAC METHANOL 1. / DME 0. / H2O 0. 
+
+BLOCK B1 RGIBBS 
+    PARAM PRES=1. MAXIT=50 DUTY=0. 
+
+EO-CONV-OPTI 
+
+STREAM-REPOR MOLEFLOW MASSFLOW 
+;
+;
+;
+;
+;

@@ -1,0 +1,555 @@
+
+
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + +                                                                         + +
+ + +                      ASPEN PLUS CALCULATION REPORT                      + +
+ + +                                                                         + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+
+ ASPEN PLUS IS A TRADEMARK OF           HOTLINE:
+ ASPEN TECHNOLOGY, INC.                 U.S.A. 888/996-7100
+ 781/221-6400                           EUROPE (44) 1189-226555
+
+ PLATFORM: WINDOWS                                       FEBRUARY 3, 2020    
+ VERSION: 36.0   Build 254 Patchlevel 4                  MONDAY      
+ INSTALLATION:                                           3:53:23 P.M.        
+
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE    I
+                           DIETHYLETHER PRODUCTION                              
+
+
+
+      ASPEN PLUS (R) IS A PROPRIETARY PRODUCT OF ASPEN TECHNOLOGY, INC.
+      (ASPENTECH), AND MAY BE USED ONLY UNDER AGREEMENT WITH ASPENTECH.
+      RESTRICTED RIGHTS LEGEND:  USE, REPRODUCTION, OR DISCLOSURE BY THE
+      U.S. GOVERNMENT IS SUBJECT TO RESTRICTIONS SET FORTH IN 
+      (i) FAR 52.227-14, Alt. III, (ii) FAR 52.227-19, (iii) DFARS 
+      252.227-7013(c)(1)(ii), or (iv) THE ACCOMPANYING LICENSE AGREEMENT,
+      AS APPLICABLE. FOR PURPOSES OF THE FAR, THIS SOFTWARE SHALL BE DEEMED
+      TO BE "UNPUBLISHED" AND LICENSED WITH DISCLOSURE PROHIBITIONS.
+      CONTRACTOR/SUBCONTRACTOR: ASPEN TECHNOLOGY, INC. 20 CROSBY DRIVE,
+      BEDFORD, MA 01730.
+                               TABLE OF CONTENTS                                
+
+
+            RUN CONTROL SECTION....................................  1
+                 RUN CONTROL INFORMATION...........................  1
+                 DESCRIPTION.......................................  1
+
+            FLOWSHEET SECTION......................................  2
+                 FLOWSHEET CONNECTIVITY BY STREAMS.................  2
+                 FLOWSHEET CONNECTIVITY BY BLOCKS..................  2
+                 CONVERGENCE STATUS SUMMARY........................  2
+                 DESIGN-SPEC:  DS-1................................  2
+                 CONVERGENCE BLOCK:  $OLVER01......................  3
+                 COMPUTATIONAL SEQUENCE............................  3
+                 OVERALL FLOWSHEET BALANCE.........................  3
+
+            PHYSICAL PROPERTIES SECTION............................  5
+                 COMPONENTS........................................  5
+
+            U-O-S BLOCK SECTION....................................  6
+                 BLOCK:  B1       MODEL: PUMP......................  6
+                 BLOCK:  B2       MODEL: HEATER....................  6
+                 BLOCK:  B3       MODEL: RSTOIC....................  7
+                 BLOCK:  B4       MODEL: FLASH2....................  9
+
+            STREAM SECTION......................................... 11
+                 S1 S3 S4 S5 S6.................................... 11
+                 S7................................................ 12
+
+            PROBLEM STATUS SECTION................................. 13
+                 BLOCK STATUS...................................... 13
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 1   
+                           DIETHYLETHER PRODUCTION                              
+                              RUN CONTROL SECTION                               
+
+ RUN CONTROL INFORMATION                 
+ -----------------------
+
+ THIS COPY OF ASPEN PLUS LICENSED TO NORTH CAROLINA STATE UNI        
+
+ TYPE OF RUN: NEW 
+
+ INPUT FILE NAME: _2344jym.inm
+
+ OUTPUT PROBLEM DATA FILE NAME: _2344jym 
+ LOCATED IN:                    
+
+
+ PDF SIZE USED FOR INPUT TRANSLATION:
+   NUMBER OF FILE RECORDS (PSIZE) =     0
+   NUMBER OF IN-CORE RECORDS      =   256
+ PSIZE NEEDED FOR SIMULATION    =   256
+
+ CALLING PROGRAM NAME:          apmain  
+ LOCATED IN: C:\Program Files (x86)\AspenTech\Aspen Plus V10.0\Engine\\xeq
+
+ SIMULATION REQUESTED FOR ENTIRE FLOWSHEET
+
+ DESCRIPTION                             
+ -----------
+
+        Specialty Chemicals Simulation with Metric Units : C, atm, kg/hr,   
+        kmol/hr, kcal/hr, l/hr. Property Method: NRTL Flow basis for        
+        input: Mass Stream report composition: Mass flow                    
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 2   
+                           DIETHYLETHER PRODUCTION                              
+                               FLOWSHEET SECTION                                
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+ ---------------------------------
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   S1         ----       B1             S7         B1         B2      
+   S3         B2         B3             S4         B3         B4      
+   S5         B4         ----           S6         B4         ----    
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+ --------------------------------
+
+   BLOCK        INLETS                         OUTLETS
+   B1           S1                             S7                          
+   B2           S7                             S3                          
+   B3           S3                             S4                          
+   B4           S4                             S5 S6                       
+
+ CONVERGENCE STATUS SUMMARY              
+ --------------------------
+
+   DESIGN-SPEC SUMMARY
+   ===================
+
+
+   DESIGN                                                            CONV
+   SPEC      ERROR        TOLERANCE    ERR/TOL      VARIABLE   STAT  BLOCK
+   ------    -----        ---------    -------      --------   ----  -----
+   DS-1      0.19053E-03  0.76500E-03  0.24906      0.46397     #    $OLVER01
+
+   #  = CONVERGED
+   *  = NOT CONVERGED
+   LB = AT LOWER BOUNDS
+   UB = AT UPPER BOUNDS
+
+ DESIGN-SPEC:  DS-1                      
+ ------------------
+
+   SAMPLED VARIABLES:
+     DEE5     : DEE MOLEFLOW IN STREAM S5 SUBSTREAM MIXED   
+     DEE4     : DEE MOLEFLOW IN STREAM S4 SUBSTREAM MIXED   
+
+   SPECIFICATION:
+     MAKE DEE5 APPROACH 0.95*DEE4    
+     WITHIN 0.005*DEE4  
+
+   MANIPULATED VARIABLES:
+     VARY     : SENTENCE=PARAM VARIABLE=VFRAC IN UOS BLOCK B4   
+     LOWER LIMIT =           0.0                                      
+     UPPER LIMIT =           1.00000                                  
+     FINAL VALUE =           0.46397                                  
+
+   VALUES OF ACCESSED FORTRAN VARIABLES:
+     VARIABLE      VALUE AT START      FINAL VALUE     UNITS
+                      OF LOOP                               
+     --------      --------------      -----------     -----
+     DEE5           0.148748           0.145541        KMOL/HR         
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 3   
+                           DIETHYLETHER PRODUCTION                              
+                               FLOWSHEET SECTION                                
+
+ DESIGN-SPEC:  DS-1 (CONTINUED)                      
+     DEE4           0.153000           0.153000        KMOL/HR         
+
+ CONVERGENCE BLOCK:  $OLVER01            
+ ----------------------------
+     SPECS: DS-1
+     MAXIT=   30 STEP-SIZE=    1.0000    % OF RANGE
+                 MAX-STEP=       100.    % OF RANGE
+                 XTOL=       1.000000E-08
+     THE NEW ALGORITHM WAS USED WITH BRACKETING=NO      
+     METHOD: SECANT        STATUS: CONVERGED       
+     TOTAL NUMBER OF ITERATIONS:     4
+
+                          *** FINAL VALUES ***
+
+
+VAR#  MANIPUL/TEAR-VAR VARIABLE DESCRIPTION                              UNIT         VALUE       PREV VALUE       ERR/TOL
+----  ---------------- -------------------------                    ----------- ------------   ------------   ------------
+   1  BLOCK-VAR        B4.PARAM.VFRAC                                               0.4640         0.4405         0.2491      
+
+                          *** ITERATION HISTORY *** 
+
+     DESIGN-SPEC ID: DS-1                                                                                     
+     ITERATED:  SENTENCE=PARAM VARIABLE=VFRAC IN UOS BLOCK B4   
+
+     ITERATION  VARIABLE         ERROR          ERR/TOL 
+     ---------  --------         -----          ------- 
+          1     0.5000           0.3398E-02      4.442    
+          2     0.5100           0.3970E-02      5.189    
+          3     0.4405          -0.3339E-02     -4.365    
+          4     0.4640           0.1905E-03     0.2491    
+
+ COMPUTATIONAL SEQUENCE                  
+ ----------------------
+
+ SEQUENCE USED WAS:
+    B1 B2 B3                                                               
+    $OLVER01 B4                                                            
+    (RETURN $OLVER01)                                                      
+
+ OVERALL FLOWSHEET BALANCE               
+ -------------------------
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                              IN          OUT       GENERATION   RELATIVE DIFF.
+   CONVENTIONAL COMPONENTS  
+           (KMOL/HR )
+      ETOH               0.360000      0.540000E-01 -0.306000     -0.237156E-12
+      H2O                 0.00000      0.153000      0.153000     -0.249927E-11
+      DEE                 0.00000      0.153000      0.153000      0.305747E-11
+   TOTAL BALANCE
+   MOLE(KMOL/HR )        0.360000      0.360000       0.00000       0.00000    
+   MASS(KG/HR   )         16.5849       16.5849                    0.143781E-11
+   ENTHALPY(KCAL/HR )    -23861.8      -22967.4                   -0.374829E-01
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 4   
+                           DIETHYLETHER PRODUCTION                              
+                               FLOWSHEET SECTION                                
+
+ OVERALL FLOWSHEET BALANCE (CONTINUED)               
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 5   
+                           DIETHYLETHER PRODUCTION                              
+                          PHYSICAL PROPERTIES SECTION                           
+
+ COMPONENTS                              
+ ----------
+
+  ID       TYPE  ALIAS          NAME
+   ETOH     C     C2H6O-2        ETHANOL                         
+   H2O      C     H2O            WATER                           
+   DEE      C     C4H10O-5       DIETHYL-ETHER                   
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 6   
+                           DIETHYLETHER PRODUCTION                              
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B1       MODEL: PUMP            
+ ----------------------------
+   INLET STREAM:          S1      
+   OUTLET STREAM:         S7      
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )           0.360000        0.360000         0.00000    
+       MASS(KG/HR   )            16.5849         16.5849         0.00000    
+       ENTHALPY(KCAL/HR )       -23861.8        -23858.9       -0.120372E-03
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+
+                          ***  INPUT DATA  ***
+    OUTLET PRESSURE  ATM                                    5.00000    
+    PUMP EFFICIENCY                                         0.70000    
+    DRIVER EFFICIENCY                                       1.00000    
+
+    FLASH SPECIFICATIONS:
+    LIQUID PHASE CALCULATION
+    NO FLASH PERFORMED
+    MAXIMUM NUMBER OF ITERATIONS                            30
+    TOLERANCE                                               0.000100000
+
+                           ***  RESULTS  ***
+    VOLUMETRIC FLOW RATE  L/HR                             20.7698     
+    PRESSURE CHANGE  ATM                                    4.00000    
+    NPSH AVAILABLE   METER                                 11.9275     
+    FLUID POWER  KW                                         0.0023383  
+    BRAKE POWER  KW                                         0.0033405  
+    ELECTRICITY  KW                                         0.0033405  
+    PUMP EFFICIENCY USED                                    0.70000    
+    NET WORK REQUIRED  KW                                   0.0033405  
+    HEAD DEVELOPED METER                                   51.7578     
+
+ BLOCK:  B2       MODEL: HEATER          
+ ------------------------------
+   INLET STREAM:          S7      
+   OUTLET STREAM:         S3      
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 7   
+                           DIETHYLETHER PRODUCTION                              
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B2       MODEL: HEATER (CONTINUED)          
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )           0.360000        0.360000         0.00000    
+       MASS(KG/HR   )            16.5849         16.5849         0.00000    
+       ENTHALPY(KCAL/HR )       -23858.9        -18599.8       -0.220427    
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+
+                          ***  INPUT DATA  ***
+   TWO    PHASE  TP  FLASH
+   SPECIFIED TEMPERATURE                C                       250.000      
+   SPECIFIED PRESSURE                   ATM                       5.00000    
+   MAXIMUM NO. ITERATIONS                                        30
+   CONVERGENCE TOLERANCE                                          0.000100000
+
+
+
+                           ***  RESULTS  ***
+   OUTLET TEMPERATURE    C                                    250.00    
+   OUTLET PRESSURE       ATM                                  5.0000    
+   HEAT DUTY             KCAL/HR                              5259.1    
+   OUTLET VAPOR FRACTION                                      1.0000    
+
+
+
+   V-L PHASE EQUILIBRIUM : 
+
+      COMP              F(I)           X(I)           Y(I)           K(I)      
+      ETOH              1.0000         1.0000         1.0000         13.926    
+
+ BLOCK:  B3       MODEL: RSTOIC          
+ ------------------------------
+   INLET STREAM:          S3      
+   OUTLET STREAM:         S4      
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 8   
+                           DIETHYLETHER PRODUCTION                              
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B3       MODEL: RSTOIC (CONTINUED)          
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                              IN          OUT       GENERATION   RELATIVE DIFF.
+   TOTAL BALANCE
+   MOLE(KMOL/HR )        0.360000      0.360000       0.00000       0.00000    
+   MASS(KG/HR   )         16.5849       16.5849                   -0.214214E-15
+   ENTHALPY(KCAL/HR )    -18599.8      -19361.8                    0.393553E-01
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+
+                          ***  INPUT DATA  ***
+   STOICHIOMETRY MATRIX:
+
+    REACTION #   1:
+     SUBSTREAM MIXED   :
+     ETOH      -2.00    H2O        1.00    DEE        1.00    
+
+
+   REACTION CONVERSION SPECS: NUMBER=    1
+     REACTION #   1:
+     SUBSTREAM:MIXED    KEY COMP:ETOH     CONV FRAC: 0.8500    
+
+
+
+
+   TWO    PHASE  TP  FLASH
+   SPECIFIED TEMPERATURE C                                 250.000      
+   SPECIFIED PRESSURE    ATM                                 5.00000    
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+   SIMULTANEOUS REACTIONS
+   GENERATE COMBUSTION REACTIONS FOR FEED SPECIES          NO  
+
+                           ***  RESULTS  ***
+   OUTLET TEMPERATURE    C                                    250.00    
+   OUTLET PRESSURE       ATM                                  5.0000    
+   HEAT DUTY             KCAL/HR                             -761.99    
+   VAPOR FRACTION                                             1.0000    
+
+
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 9   
+                           DIETHYLETHER PRODUCTION                              
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B3       MODEL: RSTOIC (CONTINUED)          
+
+   REACTION EXTENTS:
+
+      REACTION          REACTION
+      NUMBER            EXTENT  
+                        KMOL/HR         
+      1                 0.15300    
+
+   V-L PHASE EQUILIBRIUM : 
+
+      COMP              F(I)           X(I)           Y(I)           K(I)      
+      ETOH             0.15000        0.51864        0.15000         2.3195    
+      H2O              0.42500        0.82341E-01    0.42500         42.697    
+      DEE              0.42500        0.39902        0.42500         8.8109    
+
+ BLOCK:  B4       MODEL: FLASH2          
+ ------------------------------
+   INLET STREAM:          S4      
+   OUTLET VAPOR STREAM:   S5      
+   OUTLET LIQUID STREAM:  S6      
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )           0.360000        0.360000         0.00000    
+       MASS(KG/HR   )            16.5849         16.5849        0.143802E-11
+       ENTHALPY(KCAL/HR )       -19361.8        -22967.4        0.156989    
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+
+                          ***  INPUT DATA  ***
+   TWO    PHASE  PV  FLASH
+   SPECIFIED PRESSURE    ATM                                 1.00000    
+   VAPOR FRACTION                                            0.46397    
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 10  
+                           DIETHYLETHER PRODUCTION                              
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B4       MODEL: FLASH2 (CONTINUED)          
+
+                           ***  RESULTS  ***
+   OUTLET TEMPERATURE    C                                    39.262    
+   OUTLET PRESSURE       ATM                                  1.0000    
+   HEAT DUTY             KCAL/HR                             -3605.6    
+   VAPOR FRACTION                                            0.46397    
+
+
+
+   V-L PHASE EQUILIBRIUM : 
+
+      COMP              F(I)           X(I)           Y(I)           K(I)      
+      ETOH             0.15000        0.22053        0.68515E-01    0.31067    
+      H2O              0.42500        0.74081        0.60146E-01    0.81188E-01
+      DEE              0.42500        0.38656E-01    0.87134         22.540    
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 11  
+                           DIETHYLETHER PRODUCTION                              
+                                 STREAM SECTION                                 
+
+ S1 S3 S4 S5 S6                                  
+ --------------
+
+ STREAM ID               S1         S3         S4         S5         S6      
+ FROM :                  ----       B2         B3         B4         B4      
+ TO   :                  B1         B3         B4         ----       ----    
+
+ SUBSTREAM: MIXED   
+ PHASE:                  LIQUID     VAPOR      VAPOR      VAPOR      LIQUID 
+ COMPONENTS: KMOL/HR         
+   ETOH                   0.3600     0.3600  5.4000-02  1.1444-02  4.2556-02
+   H2O                    0.0        0.0        0.1530  1.0046-02     0.1430
+   DEE                    0.0        0.0        0.1530     0.1455  7.4595-03
+ COMPONENTS: KG/HR           
+   ETOH                  16.5849    16.5849     2.4877     0.5272     1.9605
+   H2O                    0.0        0.0        2.7563     0.1810     2.5754
+   DEE                    0.0        0.0       11.3408    10.7879     0.5529
+ TOTAL FLOW:     
+   KMOL/HR                0.3600     0.3600     0.3600     0.1670     0.1930
+   KG/HR                 16.5849    16.5849    16.5849    11.4961     5.0888
+   L/HR                  20.7698  3090.7891  3090.7891  4281.8786     5.8614
+ STATE VARIABLES:
+   TEMP   C              25.0000   250.0000   250.0000    39.2616    39.2616
+   PRES   ATM             1.0000     5.0000     5.0000     1.0000     1.0000
+   VFRAC                  0.0        1.0000     1.0000     1.0000     0.0   
+   LFRAC                  1.0000     0.0        0.0        0.0        1.0000
+   SFRAC                  0.0        0.0        0.0        0.0        0.0   
+ ENTHALPY:       
+   CAL/MOL            -6.6283+04 -5.1666+04 -5.3783+04 -5.9410+04 -6.7596+04
+   CAL/GM             -1438.7708 -1121.4921 -1167.4369  -863.1969 -2563.2898
+   KCAL/HR            -2.3862+04 -1.8600+04 -1.9362+04 -9923.3755 -1.3044+04
+ ENTROPY:        
+   CAL/MOL-K            -82.7893   -46.0413   -46.2849   -92.8995   -50.7581
+   CAL/GM-K              -1.7971    -0.9994    -1.0047    -1.3498    -1.9248
+ DENSITY:        
+   MOL/CC              1.7333-02  1.1648-04  1.1648-04  3.9009-05  3.2922-02
+   GM/CC                  0.7985  5.3659-03  5.3659-03  2.6848-03     0.8682
+ AVG MW                  46.0690    46.0690    46.0690    68.8261    26.3709
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 12  
+                           DIETHYLETHER PRODUCTION                              
+                                 STREAM SECTION                                 
+
+ S7                                              
+ --
+
+ STREAM ID               S7      
+ FROM :                  B1      
+ TO   :                  B2      
+
+ SUBSTREAM: MIXED   
+ PHASE:                  LIQUID 
+ COMPONENTS: KMOL/HR         
+   ETOH                   0.3600
+   H2O                    0.0   
+   DEE                    0.0   
+ COMPONENTS: KG/HR           
+   ETOH                  16.5849
+   H2O                    0.0   
+   DEE                    0.0   
+ TOTAL FLOW:     
+   KMOL/HR                0.3600
+   KG/HR                 16.5849
+   L/HR                  20.7781
+ STATE VARIABLES:
+   TEMP   C              25.2765
+   PRES   ATM             5.0000
+   VFRAC                  0.0   
+   LFRAC                  1.0000
+   SFRAC                  0.0   
+ ENTHALPY:       
+   CAL/MOL            -6.6275+04
+   CAL/GM             -1438.5976
+   KCAL/HR            -2.3859+04
+ ENTROPY:        
+   CAL/MOL-K            -82.7627
+   CAL/GM-K              -1.7965
+ DENSITY:        
+   MOL/CC              1.7326-02
+   GM/CC                  0.7982
+ AVG MW                  46.0690
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 13  
+                           DIETHYLETHER PRODUCTION                              
+                             PROBLEM STATUS SECTION                             
+
+ BLOCK STATUS                            
+ ------------
+
+ ****************************************************************************
+ *                                                                          *
+ * Calculations were completed normally                                     *
+ *                                                                          *
+ * All Unit Operation blocks were completed normally                        *
+ *                                                                          *
+ * All streams were flashed normally                                        *
+ *                                                                          *
+ * All Convergence blocks were completed normally                           *
+ *                                                                          *
+ ****************************************************************************

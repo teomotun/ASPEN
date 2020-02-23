@@ -1,0 +1,590 @@
+
+
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + +                                                                         + +
+ + +                      ASPEN PLUS CALCULATION REPORT                      + +
+ + +                                                                         + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+
+ ASPEN PLUS IS A TRADEMARK OF           HOTLINE:
+ ASPEN TECHNOLOGY, INC.                 U.S.A. 888/996-7100
+ 781/221-6400                           EUROPE (44) 1189-226555
+
+ PLATFORM: WINDOWS                                       FEBRUARY 3, 2020    
+ VERSION: 36.0   Build 254 Patchlevel 4                  MONDAY      
+ INSTALLATION:                                           8:55:06 P.M.        
+
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE    I
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+
+
+
+      ASPEN PLUS (R) IS A PROPRIETARY PRODUCT OF ASPEN TECHNOLOGY, INC.
+      (ASPENTECH), AND MAY BE USED ONLY UNDER AGREEMENT WITH ASPENTECH.
+      RESTRICTED RIGHTS LEGEND:  USE, REPRODUCTION, OR DISCLOSURE BY THE
+      U.S. GOVERNMENT IS SUBJECT TO RESTRICTIONS SET FORTH IN 
+      (i) FAR 52.227-14, Alt. III, (ii) FAR 52.227-19, (iii) DFARS 
+      252.227-7013(c)(1)(ii), or (iv) THE ACCOMPANYING LICENSE AGREEMENT,
+      AS APPLICABLE. FOR PURPOSES OF THE FAR, THIS SOFTWARE SHALL BE DEEMED
+      TO BE "UNPUBLISHED" AND LICENSED WITH DISCLOSURE PROHIBITIONS.
+      CONTRACTOR/SUBCONTRACTOR: ASPEN TECHNOLOGY, INC. 20 CROSBY DRIVE,
+      BEDFORD, MA 01730.
+                               TABLE OF CONTENTS                                
+
+
+            RUN CONTROL SECTION....................................  1
+                 RUN CONTROL INFORMATION...........................  1
+                 DESCRIPTION.......................................  1
+
+            FLOWSHEET SECTION......................................  2
+                 FLOWSHEET CONNECTIVITY BY STREAMS.................  2
+                 FLOWSHEET CONNECTIVITY BY BLOCKS..................  2
+                 CONVERGENCE STATUS SUMMARY........................  2
+                 DESIGN-SPEC:  DS-1................................  2
+                 CONVERGENCE BLOCK:  $OLVER01......................  3
+                 COMPUTATIONAL SEQUENCE............................  3
+                 OVERALL FLOWSHEET BALANCE.........................  3
+
+            PHYSICAL PROPERTIES SECTION............................  5
+                 COMPONENTS........................................  5
+
+            U-O-S BLOCK SECTION....................................  6
+                 BLOCK:  B1       MODEL: HEATX.....................  6
+                 HEATX COLD-TQCU B1       TQCURV INLET.............  8
+                 HEATX HOT-TQCUR B1       TQCURV INLET.............  9
+                 BLOCK:  B2       MODEL: FLASH2....................  9
+
+            STREAM SECTION......................................... 11
+                 S1 S2 S3 S4 S5.................................... 11
+                 S6................................................ 12
+
+            PROBLEM STATUS SECTION................................. 13
+                 BLOCK STATUS...................................... 13
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 1   
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+                              RUN CONTROL SECTION                               
+
+ RUN CONTROL INFORMATION                 
+ -----------------------
+
+ THIS COPY OF ASPEN PLUS LICENSED TO NORTH CAROLINA STATE UNI        
+
+ TYPE OF RUN: NEW 
+
+ INPUT FILE NAME: _3354ddc.inm
+
+ OUTPUT PROBLEM DATA FILE NAME: _3354ddc 
+ LOCATED IN:                    
+
+
+ PDF SIZE USED FOR INPUT TRANSLATION:
+   NUMBER OF FILE RECORDS (PSIZE) =     0
+   NUMBER OF IN-CORE RECORDS      =   256
+ PSIZE NEEDED FOR SIMULATION    =   256
+
+ CALLING PROGRAM NAME:          apmain  
+ LOCATED IN: C:\Program Files (x86)\AspenTech\Aspen Plus V10.0\Engine\\xeq
+
+ SIMULATION REQUESTED FOR ENTIRE FLOWSHEET
+
+ DESCRIPTION                             
+ -----------
+
+        Specialty Chemicals Simulation with Metric Units : C, atm, kg/hr,   
+        kmol/hr, kcal/hr, l/hr. Property Method: NRTL Flow basis for        
+        input: Mass Stream report composition: Mass flow                    
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 2   
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+                               FLOWSHEET SECTION                                
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+ ---------------------------------
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   S3         ----       B1             S1         ----       B1      
+   S2         B1         B2             S4         B1         ----    
+   S5         B2         ----           S6         B2         ----    
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+ --------------------------------
+
+   BLOCK        INLETS                         OUTLETS
+   B1           S1 S3                          S2 S4                       
+   B2           S2                             S5 S6                       
+
+ CONVERGENCE STATUS SUMMARY              
+ --------------------------
+
+   DESIGN-SPEC SUMMARY
+   ===================
+
+
+   DESIGN                                                            CONV
+   SPEC      ERROR        TOLERANCE    ERR/TOL      VARIABLE   STAT  BLOCK
+   ------    -----        ---------    -------      --------   ----  -----
+   DS-1      0.10032E-01  0.62056E-02   1.6165       300.00     * LB $OLVER01
+
+   #  = CONVERGED
+   *  = NOT CONVERGED
+   LB = AT LOWER BOUNDS
+   UB = AT UPPER BOUNDS
+
+ DESIGN-SPEC:  DS-1                      
+ ------------------
+
+     ***********************************************************************
+     *                                                                     *
+     *     DESIGN SPEC DID NOT CONVERGE                                    *
+     *                                                                     *
+     ***********************************************************************
+
+   SAMPLED VARIABLES:
+     BUOH6    : BUOH MOLEFLOW IN STREAM S6 SUBSTREAM MIXED  
+     BUOH1    : BUOH MOLEFLOW IN STREAM S1 SUBSTREAM MIXED  
+
+   SPECIFICATION:
+     MAKE BUOH6 APPROACH 0.8*BUOH1   
+     WITHIN 0.033*BUOH1 
+
+   MANIPULATED VARIABLES:
+     VARY     : TOTAL MASSFLOW IN STREAM S3 SUBSTREAM MIXED 
+     LOWER LIMIT =         300.000                    KG/HR           
+     UPPER LIMIT =       1,000.00                     KG/HR           
+     FINAL VALUE =         300.000                    KG/HR           
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 3   
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+                               FLOWSHEET SECTION                                
+
+ DESIGN-SPEC:  DS-1 (CONTINUED)                      
+
+   VALUES OF ACCESSED FORTRAN VARIABLES:
+     VARIABLE      VALUE AT START      FINAL VALUE     UNITS
+                      OF LOOP                               
+     --------      --------------      -----------     -----
+     BUOH6          0.188023           0.160470        KMOL/HR         
+     BUOH1          0.188048           0.188048        KMOL/HR         
+
+ CONVERGENCE BLOCK:  $OLVER01            
+ ----------------------------
+     SPECS: DS-1
+     MAXIT=   30 STEP-SIZE=    1.0000    % OF RANGE
+                 MAX-STEP=       100.    % OF RANGE
+                 XTOL=       1.000000E-08
+     THE NEW ALGORITHM WAS USED WITH BRACKETING=NO      
+     METHOD: SECANT        STATUS: NOT CONVERGED   
+     TOTAL NUMBER OF ITERATIONS:     3
+
+     ***********************************************************************
+     *                                                                     *
+     *     BLOCK NOT CONVERGED                                             *
+     *                                                                     *
+     *     SOLUTION OUTSIDE BOUNDS OR FUNCTION NOT MONOTONIC               *
+     *                                                                     *
+     ***********************************************************************
+
+
+                          *** FINAL VALUES ***
+
+
+VAR#  MANIPUL/TEAR-VAR VARIABLE DESCRIPTION                              UNIT         VALUE       PREV VALUE       ERR/TOL
+----  ---------------- -------------------------                    ----------- ------------   ------------   ------------
+   1  TOTAL MASSFLOW   S3.MIXED.TOTAL.MASSFLOW                      KG/HR         300.0000       300.0000         1.6165     *
+
+                          *** ITERATION HISTORY *** 
+
+     DESIGN-SPEC ID: DS-1                                                                                     
+     ITERATED:  TOTAL MASSFLOW IN STREAM S3 SUBSTREAM MIXED 
+
+     ITERATION  VARIABLE         ERROR          ERR/TOL 
+     ---------  --------         -----          ------- 
+          1      500.0           0.3758E-01      6.057    
+          2      507.0           0.3761E-01      6.061    
+          3      300.0     LB    0.1003E-01      1.617    
+
+ COMPUTATIONAL SEQUENCE                  
+ ----------------------
+
+ SEQUENCE USED WAS:
+    *$OLVER01 B1 B2                                                        
+    (RETURN *$OLVER01)                                                     
+
+ OVERALL FLOWSHEET BALANCE               
+ -------------------------
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 4   
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+                               FLOWSHEET SECTION                                
+
+ OVERALL FLOWSHEET BALANCE (CONTINUED)               
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    CONVENTIONAL COMPONENTS (KMOL/HR )
+       MEOH                     0.580012        0.580012       -0.191414E-15
+       PROH                     0.231940        0.231940         0.00000    
+       BUOH                     0.188048        0.188048       -0.147598E-15
+       H2O                       16.6525         16.6525         0.00000    
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            17.6525         17.6525         0.00000    
+       MASS(KG/HR   )            346.462         346.462         0.00000    
+       ENTHALPY(KCAL/HR )      -0.119114E+07   -0.119114E+07   -0.794391E-08
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 5   
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+                          PHYSICAL PROPERTIES SECTION                           
+
+ COMPONENTS                              
+ ----------
+
+  ID       TYPE  ALIAS          NAME
+   MEOH     C     CH4O           METHANOL                        
+   PROH     C     C3H8O-1        1-PROPANOL                      
+   BUOH     C     C4H10O-1       N-BUTANOL                       
+   H2O      C     H2O            WATER                           
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 6   
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B1       MODEL: HEATX           
+ -----------------------------
+   HOT SIDE:
+   ---------
+   INLET STREAM:             S1      
+   OUTLET STREAM:            S2      
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+   COLD SIDE:
+   ----------
+   INLET STREAM:             S3      
+   OUTLET STREAM:            S4      
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            17.6525         17.6525         0.00000    
+       MASS(KG/HR   )            346.462         346.462         0.00000    
+       ENTHALPY(KCAL/HR )      -0.119114E+07   -0.119114E+07     0.00000    
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+
+                          ***  INPUT DATA  ***
+
+   FLASH SPECS FOR HOT SIDE:
+   TWO    PHASE      FLASH
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+
+   FLASH SPECS FOR COLD SIDE:
+   TWO    PHASE      FLASH
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+
+   FLOW DIRECTION AND SPECIFICATION:
+     COUNTERCURRENT   HEAT EXCHANGER
+     SPECIFIED COLD OUTLET TEMP    
+     SPECIFIED VALUE                C                       40.0000
+     LMTD CORRECTION FACTOR                                  1.00000
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 7   
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B1       MODEL: HEATX (CONTINUED)           
+
+   PRESSURE SPECIFICATION:
+     HOT  SIDE PRESSURE DROP        ATM                      0.0000
+     COLD SIDE PRESSURE DROP        ATM                      0.0000
+
+   HEAT TRANSFER COEFFICIENT SPECIFICATION:
+     OVERALL COEFFICIENT            KCAL/HR-SQM-K          730.8684
+
+                        ***  OVERALL RESULTS  ***
+
+   STREAMS:
+                   --------------------------------------
+                   |                                    |
+   S1        ----->|                HOT                 |-----> S2      
+   T=  1.0500D+02  |                                    |       T=  8.0459D+01
+   P=  1.0000D+00  |                                    |       P=  1.0000D+00
+   V=  1.0000D+00  |                                    |       V=  4.3241D-01
+                   |                                    |
+   S4        <-----|                COLD                |<----- S3      
+   T=  4.0000D+01  |                                    |       T=  2.0000D+01
+   P=  1.0000D+00  |                                    |       P=  1.0000D+00
+   V=  0.0000D+00  |                                    |       V=  0.0000D+00
+                   --------------------------------------
+
+   DUTY AND AREA:
+     CALCULATED HEAT DUTY           KCAL/HR               5931.9929
+     CALCULATED (REQUIRED) AREA     SQM                      0.1294
+     ACTUAL EXCHANGER AREA          SQM                      0.1294
+     PER CENT OVER-DESIGN                                    0.0000
+
+   HEAT TRANSFER COEFFICIENT:
+     AVERAGE COEFFICIENT (DIRTY)    KCAL/HR-SQM-K          730.8684
+     UA (DIRTY)                     CAL/SEC-K               26.2795
+
+   LOG-MEAN TEMPERATURE DIFFERENCE:
+     LMTD CORRECTION FACTOR                                  1.0000
+     LMTD (CORRECTED)               C                       62.7020
+     NUMBER OF SHELLS IN SERIES                               1
+
+   PRESSURE DROP:
+     HOTSIDE, TOTAL                 ATM                      0.0000
+     COLDSIDE, TOTAL                ATM                      0.0000
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 8   
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+                              U-O-S BLOCK SECTION                               
+
+ HEATX COLD-TQCU B1       TQCURV INLET   
+ -------------------------------------
+   PRESSURE PROFILE:      CONSTANT2   
+   PRESSURE DROP:         0.0         ATM             
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+
+ -----------------------------------------------------
+ !  DUTY      !  PRES      !  TEMP      !  VFRAC     !
+ !            !            !            !            !
+ !            !            !            !            !
+ !            !            !            !            !
+ !  KCAL/HR   !  ATM       !  C         !            !
+ !            !            !            !            !
+ !============!============!============!============!
+ !     0.0    !     1.0000 !    40.0000 !     0.0    !
+ !   282.4759 !     1.0000 !    39.0564 !     0.0    !
+ !   564.9517 !     1.0000 !    39.0564 !     0.0    !
+ !   847.4276 !     1.0000 !    38.1119 !     0.0    !
+ !  1129.9034 !     1.0000 !    37.1665 !     0.0    !
+ !------------+------------+------------+------------!
+ !  1412.3793 !     1.0000 !    36.2201 !     0.0    !
+ !  1694.8551 !     1.0000 !    35.2729 !     0.0    !
+ !  1977.3310 !     1.0000 !    34.3247 !     0.0    !
+ !  2259.8068 !     1.0000 !    33.3757 !     0.0    !
+ !  2542.2827 !     1.0000 !    32.4257 !     0.0    !
+ !------------+------------+------------+------------!
+ !  2824.7585 !     1.0000 !    31.4749 !     0.0    !
+ !  3107.2344 !     1.0000 !    30.5232 !     0.0    !
+ !  3389.7103 !     1.0000 !    29.5707 !     0.0    !
+ !  3672.1861 !     1.0000 !    28.6173 !     0.0    !
+ !  3954.6620 !     1.0000 !    27.6630 !     0.0    !
+ !------------+------------+------------+------------!
+ !  4237.1378 !     1.0000 !    26.7080 !     0.0    !
+ !  4519.6137 !     1.0000 !    25.7521 !     0.0    !
+ !  4802.0895 !     1.0000 !    24.7954 !     0.0    !
+ !  5084.5654 !     1.0000 !    23.8379 !     0.0    !
+ !  5367.0412 !     1.0000 !    22.8796 !     0.0    !
+ !------------+------------+------------+------------!
+ !  5649.5171 !     1.0000 !    21.9205 !     0.0    !
+ !  5931.9929 !     1.0000 !    20.9606 !     0.0    !
+ -----------------------------------------------------
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 9   
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+                              U-O-S BLOCK SECTION                               
+
+ HEATX HOT-TQCUR B1       TQCURV INLET   
+ -------------------------------------
+   PRESSURE PROFILE:      CONSTANT2   
+   PRESSURE DROP:         0.0         ATM             
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+
+ -----------------------------------------------------
+ !  DUTY      !  PRES      !  TEMP      !  VFRAC     !
+ !            !            !            !            !
+ !            !            !            !            !
+ !            !            !            !            !
+ !  KCAL/HR   !  ATM       !  C         !            !
+ !            !            !            !            !
+ !============!============!============!============!
+ !     0.0    !     1.0000 !   105.0000 !     1.0000 !
+ !   282.4759 !     1.0000 !    91.8636 !     0.9959 !
+ !   564.9517 !     1.0000 !    91.3151 !     0.9689 !
+ !   847.4276 !     1.0000 !    90.7578 !     0.9417 !
+ !  1129.9034 !     1.0000 !    90.1927 !     0.9145 !
+ !------------+------------+------------+------------!
+ !  1412.3793 !     1.0000 !    89.6204 !     0.8872 !
+ !  1694.8551 !     1.0000 !    89.0420 !     0.8598 !
+ !  1977.3310 !     1.0000 !    88.4584 !     0.8322 !
+ !  2259.8068 !     1.0000 !    87.8707 !     0.8046 !
+ !  2542.2827 !     1.0000 !    87.2801 !     0.7769 !
+ !------------+------------+------------+------------!
+ !  2824.7585 !     1.0000 !    86.6878 !     0.7490 !
+ !  3107.2344 !     1.0000 !    86.0951 !     0.7211 !
+ !  3389.7103 !     1.0000 !    85.5034 !     0.6929 !
+ !  3672.1861 !     1.0000 !    84.9140 !     0.6646 !
+ !  3954.6620 !     1.0000 !    84.3285 !     0.6362 !
+ !------------+------------+------------+------------!
+ !  4237.1378 !     1.0000 !    83.7482 !     0.6076 !
+ !  4519.6137 !     1.0000 !    83.1748 !     0.5789 !
+ !  4802.0895 !     1.0000 !    82.6096 !     0.5499 !
+ !  5084.5654 !     1.0000 !    82.0541 !     0.5208 !
+ !  5367.0412 !     1.0000 !    81.5097 !     0.4915 !
+ !------------+------------+------------+------------!
+ !  5649.5171 !     1.0000 !    80.9775 !     0.4621 !
+ !  5931.9929 !     1.0000 !    80.4587 !     0.4324 !
+ -----------------------------------------------------
+
+ BLOCK:  B2       MODEL: FLASH2          
+ ------------------------------
+   INLET STREAM:          S2      
+   OUTLET VAPOR STREAM:   S5      
+   OUTLET LIQUID STREAM:  S6      
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 10  
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B2       MODEL: FLASH2 (CONTINUED)          
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            1.00000         1.00000         0.00000    
+       MASS(KG/HR   )            46.4621         46.4621       -0.152929E-15
+       ENTHALPY(KCAL/HR )       -58857.5        -58857.5       -0.160766E-06
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+
+                          ***  INPUT DATA  ***
+   TWO    PHASE  PQ  FLASH
+   SPECIFIED PRESSURE    ATM                                 1.00000    
+   SPECIFIED HEAT DUTY   KCAL/HR                             0.0        
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+
+                           ***  RESULTS  ***
+   OUTLET TEMPERATURE    C                                    80.459    
+   OUTLET PRESSURE       ATM                                  1.0000    
+   VAPOR FRACTION                                            0.43241    
+
+
+
+   V-L PHASE EQUILIBRIUM : 
+
+      COMP              F(I)           X(I)           Y(I)           K(I)      
+      MEOH             0.58001        0.42315        0.78591         1.8573    
+      PROH             0.23194        0.29413        0.15031        0.51104    
+      BUOH             0.18805        0.28272        0.63777E-01    0.22558    
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 11  
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+                                 STREAM SECTION                                 
+
+ S1 S2 S3 S4 S5                                  
+ --------------
+
+ STREAM ID               S1         S2         S3         S4         S5      
+ FROM :                  ----       B1         ----       B1         B2      
+ TO   :                  B1         B2         B1         ----       ----    
+
+ SUBSTREAM: MIXED   
+ PHASE:                  VAPOR      MIXED      LIQUID     LIQUID     VAPOR  
+ COMPONENTS: KMOL/HR         
+   MEOH                   0.5800     0.5800     0.0        0.0        0.3398
+   PROH                   0.2319     0.2319     0.0        0.0     6.4996-02
+   BUOH                   0.1880     0.1880     0.0        0.0     2.7578-02
+   H2O                    0.0        0.0       16.6525    16.6525     0.0   
+ COMPONENTS: KG/HR           
+   MEOH                  18.5848    18.5848     0.0        0.0       10.8891
+   PROH                  13.9386    13.9386     0.0        0.0        3.9060
+   BUOH                  13.9386    13.9386     0.0        0.0        2.0442
+   H2O                    0.0        0.0      300.0000   300.0000     0.0   
+ TOTAL FLOW:     
+   KMOL/HR                1.0000     1.0000    16.6525    16.6525     0.4324
+   KG/HR                 46.4621    46.4621   300.0000   300.0000    16.8393
+   L/HR                3.1029+04  1.2586+04   300.3703   306.3200  1.2547+04
+ STATE VARIABLES:
+   TEMP   C             105.0000    80.4587    20.0000    40.0000    80.4588
+   PRES   ATM             1.0000     1.0000     1.0000     1.0000     1.0000
+   VFRAC                  1.0000     0.4324     0.0        0.0        1.0000
+   LFRAC                  0.0        0.5676     1.0000     1.0000     0.0   
+   SFRAC                  0.0        0.0        0.0        0.0        0.0   
+ ENTHALPY:       
+   CAL/MOL            -5.2926+04 -5.8858+04 -6.8351+04 -6.7994+04 -5.0290+04
+   CAL/GM             -1139.1110 -1266.7847 -3794.0369 -3774.2636 -1291.3879
+   KCAL/HR            -5.2926+04 -5.8858+04 -1.1382+06 -1.1323+06 -2.1746+04
+ ENTROPY:        
+   CAL/MOL-K            -48.2943   -64.7740   -39.2629   -38.0924   -38.4500
+   CAL/GM-K              -1.0394    -1.3941    -2.1794    -2.1145    -0.9873
+ DENSITY:        
+   MOL/CC              3.2227-05  7.9453-05  5.5440-02  5.4363-02  3.4464-05
+   GM/CC               1.4974-03  3.6916-03     0.9988     0.9794  1.3421-03
+ AVG MW                  46.4621    46.4621    18.0153    18.0153    38.9427
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 12  
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+                                 STREAM SECTION                                 
+
+ S6                                              
+ --
+
+ STREAM ID               S6      
+ FROM :                  B2      
+ TO   :                  ----    
+
+ SUBSTREAM: MIXED   
+ PHASE:                  LIQUID 
+ COMPONENTS: KMOL/HR         
+   MEOH                   0.2402
+   PROH                   0.1669
+   BUOH                   0.1605
+   H2O                    0.0   
+ COMPONENTS: KG/HR           
+   MEOH                   7.6957
+   PROH                  10.0327
+   BUOH                  11.8945
+   H2O                    0.0   
+ TOTAL FLOW:     
+   KMOL/HR                0.5676
+   KG/HR                 29.6228
+   L/HR                  39.3218
+ STATE VARIABLES:
+   TEMP   C              80.4588
+   PRES   ATM             1.0000
+   VFRAC                  0.0   
+   LFRAC                  1.0000
+   SFRAC                  0.0   
+ ENTHALPY:       
+   CAL/MOL            -6.5384+04
+   CAL/GM             -1252.7985
+   KCAL/HR            -3.7111+04
+ ENTROPY:        
+   CAL/MOL-K            -84.8287
+   CAL/GM-K              -1.6254
+ DENSITY:        
+   MOL/CC              1.4434-02
+   GM/CC                  0.7533
+ AVG MW                  52.1907
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 13  
+                        WATER-COOLED-PARTIAL-CONDENSER                          
+                             PROBLEM STATUS SECTION                             
+
+ BLOCK STATUS                            
+ ------------
+
+ ****************************************************************************
+ *                                                                          *
+ * Calculations were completed with warnings                                *
+ *                                                                          *
+ * All Unit Operation blocks were completed normally                        *
+ *                                                                          *
+ * All streams were flashed normally                                        *
+ *                                                                          *
+ * The following Convergence blocks were                                    *
+ * completed with warnings:                                                 *
+ *   $OLVER01                                                               *
+ *                                                                          *
+ ****************************************************************************

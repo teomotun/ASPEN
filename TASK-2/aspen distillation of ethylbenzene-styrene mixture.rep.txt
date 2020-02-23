@@ -1,0 +1,452 @@
+
+
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + +                                                                         + +
+ + +                      ASPEN PLUS CALCULATION REPORT                      + +
+ + +                                                                         + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+
+              ASPEN DISTILLATION OF ETHYLBENZENE-STYRENE MIXTURE USING DSTWU, DISTL & 						RADFRAC                  
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+ ---------------------------------
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   1          ----       B1             2          B1         B2      
+   3          B1         B3             4          B1         B4      
+   5          B2         ----           6          B2         ----    
+   7          B3         ----           8          B3         ----    
+   9          B4         ----           10         B4         ----    
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+ --------------------------------
+
+   BLOCK        INLETS                         OUTLETS
+   B1           1                              2 3 4                       
+   B2           2                              5 6                         
+   B3           3                              7 8                         
+   B4           4                              9 10                        
+
+ COMPUTATIONAL SEQUENCE                  
+ ----------------------
+
+ SEQUENCE USED WAS:
+    B1 B2 B3 B4                                                            
+
+ OVERALL FLOWSHEET BALANCE               
+ -------------------------
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    CONVENTIONAL COMPONENTS (KMOL/HR )
+       ETBZ                     0.350000         1.05000       -0.666667    
+       STYRENE                  0.650000         1.95000       -0.666667    
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            1.00000         3.00000       -0.666667    
+       MASS(KG/HR   )            104.857         314.571       -0.666667    
+       ENTHALPY(KCAL/HR )        17437.3         53531.6       -0.674261    
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+                 
+                          PHYSICAL PROPERTIES SECTION                           
+
+ COMPONENTS                              
+ ----------
+
+  ID       TYPE  ALIAS          NAME
+   ETBZ     C     C8H10-4        ETHYLBENZENE                    
+   STYRENE  C     C8H8           STYRENE                         
+                                     
+
+ BLOCK:  B1       MODEL: DUPL            
+ ----------------------------
+   INLET STREAM:          1       
+   OUTLET STREAMS:        2           3           4       
+
+ BLOCK:  B2       MODEL: DSTWU           
+ -----------------------------
+   INLET STREAM:          2       
+   CONDENSER OUTLET:      5       
+   REBOILER OUTLET:       6       
+   PROPERTY OPTION SET:   IDEAL     IDEAL LIQUID / IDEAL GAS                    
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            1.00000         1.00000         0.00000    
+       MASS(KG/HR   )            104.857         104.857         0.00000    
+       ENTHALPY(KCAL/HR )        17437.3         18039.0       -0.333517E-01
+      
+
+                          ***  INPUT DATA  ***
+    HEAVY KEY COMPONENT                                         STYRENE 
+    RECOVERY FOR HEAVY KEY                                   0.20000    
+    LIGHT KEY COMPONENT                                         ETBZ    
+    RECOVERY FOR LIGHT KEY                                   0.80000    
+    TOP STAGE PRESSURE (ATM     )                            0.100000   
+    BOTTOM STAGE PRESSURE (ATM     )                         0.30000    
+    REFLUX RATIO                                             3.50000    
+    DISTILLATE VAPOR FRACTION                                0.0        
+          
+
+ BLOCK:  B2       MODEL: DSTWU (CONTINUED)           
+
+                           ***  RESULTS  ***
+    DISTILLATE TEMP.  (C       )                            69.6350     
+    BOTTOM TEMP.  (C       )                               103.782      
+    MINIMUM REFLUX RATIO                                     3.45273    
+    ACTUAL REFLUX RATIO                                      3.50000    
+    MINIMUM STAGES                                           9.15756    
+    ACTUAL EQUILIBRIUM STAGES                               82.6469     
+    NUMBER OF ACTUAL STAGES ABOVE FEED                      39.5607     
+    DIST. VS FEED                                            0.41000    
+    CONDENSER COOLING REQUIRED (KCAL/HR )               17,771.5        
+    NET CONDENSER DUTY (KCAL/HR )                      -17,771.5        
+    REBOILER HEATING REQUIRED (KCAL/HR )                18,373.2        
+    NET REBOILER DUTY (KCAL/HR )                        18,373.2        
+
+ BLOCK:  B3       MODEL: DISTL           
+ -----------------------------
+   INLET STREAM:          3       
+   CONDENSER OUTLET:      7       
+   REBOILER OUTLET:       8       
+   PROPERTY OPTION SET:   IDEAL     IDEAL LIQUID / IDEAL GAS                    
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            1.00000         1.00000         0.00000    
+       MASS(KG/HR   )            104.857         104.857        0.294769E-12
+       ENTHALPY(KCAL/HR )        17437.3         17904.3       -0.260795E-01
+          
+
+                          ***  INPUT DATA  ***
+    THEORETICAL STAGES                                      20
+    FEED STAGE NO. FROM TOP                                 10
+    REFLUX RATIO                                             3.50000    
+    TOP STAGE PRESSURE (ATM     )                            0.100000   
+    BOTTOM STAGE PRESSURE (ATM     )                         0.30000    
+    DISTILLATE TO FEED RATIO                                 0.50000    
+    CONDENSER TYPE: TOTAL CONDENSER
+  BLOCK:  B3       MODEL: DISTL (CONTINUED)           
+
+                           ***  RESULTS  ***
+    FEED-QUALITY                                            -0.060454   
+    FEED STAGE TEMPERATURE (C       )                       89.9014     
+    TOP STAGE TEMPERATURE (C       )                        70.2172     
+    BOTTOM STAGE TEMPERATURE (C       )                    104.022      
+    CONDENSER COOLING REQUIRED (KCAL/HR )               21,840.4        
+    NET CONDENSER DUTY (KCAL/HR )                      -21,840.4        
+    REBOILER HEATING REQUIRED (KCAL/HR )                22,307.3        
+    NET REBOILER DUTY (KCAL/HR )                        22,307.3        
+
+ BLOCK:  B4       MODEL: RADFRAC         
+ -------------------------------
+    INLETS   - 4        STAGE   7
+    OUTLETS  - 9        STAGE   1
+               10       STAGE  20
+   PROPERTY OPTION SET:   IDEAL     IDEAL LIQUID / IDEAL GAS                    
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            1.00000         1.00000         0.00000    
+       MASS(KG/HR   )            104.857         104.857        0.176361E-10
+       ENTHALPY(KCAL/HR )        17437.3         17588.4       -0.858563E-02
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+  BLOCK:  B4       MODEL: RADFRAC (CONTINUED)         
+
+
+
+                         **********************
+                         ****  INPUT DATA  ****
+                         **********************
+
+   ****   INPUT PARAMETERS   ****
+
+    NUMBER OF STAGES                                        20
+    ALGORITHM OPTION                                      STANDARD    
+    ABSORBER OPTION                                       NO      
+    INITIALIZATION OPTION                                 STANDARD    
+    HYDRAULIC PARAMETER CALCULATIONS                      NO      
+    INSIDE LOOP CONVERGENCE METHOD                        BROYDEN 
+    DESIGN SPECIFICATION METHOD                           NESTED  
+    MAXIMUM NO. OF OUTSIDE LOOP ITERATIONS                  25
+    MAXIMUM NO. OF INSIDE LOOP ITERATIONS                   10
+    MAXIMUM NUMBER OF FLASH ITERATIONS                      30
+    FLASH TOLERANCE                                          0.000100000
+    OUTSIDE LOOP CONVERGENCE TOLERANCE                       0.000100000
+
+   ****   COL-SPECS   ****
+
+    MOLAR VAPOR DIST / TOTAL DIST                            0.0        
+    MOLAR REFLUX RATIO                                       4.00000    
+    MASS DISTILLATE TO FEED RATIO                            0.50000    
+
+   ****    PROFILES   ****
+
+    P-SPEC          STAGE   1  PRES, ATM                     0.100000   
+
+                          *******************
+                          ****  RESULTS  ****
+                          *******************
+
+
+   ***   COMPONENT SPLIT FRACTIONS   ***
+
+                             OUTLET STREAMS 
+                             --------------
+                  9            10      
+    COMPONENT:
+    ETBZ        .92816       .71843E-01
+    STYRENE     .26499       .73501    
+
+ 
+                             
+
+ BLOCK:  B4       MODEL: RADFRAC (CONTINUED)         
+   ***    SUMMARY OF KEY RESULTS    ***
+
+    TOP STAGE TEMPERATURE          C                        69.8588     
+    BOTTOM STAGE TEMPERATURE       C                        91.9213     
+    TOP STAGE LIQUID FLOW          KMOL/HR                   2.57066    
+    BOTTOM STAGE LIQUID FLOW       KMOL/HR                   0.50290    
+    TOP STAGE VAPOR FLOW           KMOL/HR                   0.0        
+    BOILUP VAPOR FLOW              KMOL/HR                   3.10829    
+    MOLAR REFLUX RATIO                                       5.17131    
+    MOLAR BOILUP RATIO                                       6.18073    
+    CONDENSER DUTY (W/O SUBCOOL)   KCAL/HR             -29,725.9        
+    REBOILER DUTY                  KCAL/HR              29,876.9        
+
+
+   ****   MANIPULATED VARIABLES   ****
+
+                                                 BOUNDS             CALCULATED
+                                          LOWER         UPPER         VALUE
+   MOLAR REFLUX RATIO                     3.0000        10.000        5.1713    
+
+   ****    DESIGN SPECIFICATIONS   **** 
+
+ NO  SPEC-TYPE     QUALIFIERS              UNIT       SPECIFIED     CALCULATED
+                                                        VALUE         VALUE
+  1  MOLE-FRAC     STREAMS: 10                         0.95000       0.95000    
+                   COMPS:   STYRENE      
+
+   ****   MAXIMUM FINAL RELATIVE ERRORS   ****
+
+    DEW POINT                       0.15002E-06  STAGE= 12
+    BUBBLE POINT                    0.61291E-06  STAGE= 12
+    COMPONENT MASS BALANCE          0.20496E-07  STAGE= 20 COMP=ETBZ    
+    ENERGY BALANCE                  0.10258E-04  STAGE=  4
+
+                              
+
+ BLOCK:  B4       MODEL: RADFRAC (CONTINUED)         
+
+   ****    PROFILES   ****
+
+   **NOTE** REPORTED VALUES FOR STAGE LIQUID AND VAPOR RATES ARE THE FLOWS
+            FROM THE STAGE INCLUDING ANY SIDE PRODUCT.
+
+                                          ENTHALPY
+ STAGE TEMPERATURE   PRESSURE             CAL/MOL            HEAT DUTY
+       C             ATM            LIQUID       VAPOR        KCAL/HR 
+
+   1   69.859       0.10000        8685.1       16307.      -.29726+05
+   2   71.631       0.10492        10935.       18375.                
+   6   77.581       0.12458        16987.       24470.                
+   7   78.795       0.12950        17817.       25367.                
+   8   79.953       0.13442        18556.       26177.                
+  18   90.224       0.18358        25484.       34363.                
+  19   91.088       0.18850        25961.       34962.                
+  20   91.921       0.19342        26389.       35503.       .29877+05
+
+ STAGE     FLOW RATE                  FEED RATE               PRODUCT RATE
+            KMOL/HR                    KMOL/HR                  KMOL/HR 
+       LIQUID     VAPOR       LIQUID    VAPOR    MIXED      LIQUID    VAPOR
+   1  3.068      0.000                                        0.4971          
+   2  2.566      3.068                                                        
+   6  2.558      3.055                                                        
+   7  3.561      3.055         1.0000                                         
+   8  3.565      3.058                                                        
+  18  3.607      3.100                                                        
+  19  3.611      3.104                                                        
+  20 0.5029      3.108                                        0.5029          
+
+    ****  MASS FLOW PROFILES  ****
+
+ STAGE     FLOW RATE                  FEED RATE               PRODUCT RATE
+            KG/HR                      KG/HR                    KG/HR   
+       LIQUID     VAPOR       LIQUID    VAPOR    MIXED      LIQUID    VAPOR
+   1  323.6      0.000                                       52.4285          
+   2  270.2      323.6                                                        
+   6  268.3      320.9                                                        
+   7  373.3      320.7       104.8570                                         
+   8  373.6      320.9                                                        
+  18  376.2      323.5                                                        
+  19  376.6      323.8                                                        
+  20  52.43      324.1                                       52.4285          
+                               
+
+ BLOCK:  B4       MODEL: RADFRAC (CONTINUED)         
+
+                         ****   MOLE-X-PROFILE     ****
+   STAGE     ETBZ          STYRENE 
+      1    0.65350       0.34650    
+      2    0.57489       0.42511    
+      6    0.36561       0.63439    
+      7    0.33764       0.66236    
+      8    0.31286       0.68714    
+     18    0.79788E-01   0.92021    
+     19    0.64039E-01   0.93596    
+     20    0.50000E-01   0.95000    
+
+                         ****   MOLE-Y-PROFILE     ****
+   STAGE     ETBZ          STYRENE 
+      1    0.72520       0.27480    
+      2    0.65350       0.34650    
+      6    0.44301       0.55699    
+      7    0.41246       0.58754    
+      8    0.38494       0.61506    
+     18    0.10497       0.89503    
+     19    0.84614E-01   0.91539    
+     20    0.66310E-01   0.93369    
+
+                         ****   K-VALUES           ****
+   STAGE     ETBZ          STYRENE 
+      1     1.1097       0.79308    
+      2     1.1367       0.81507    
+      6     1.2117       0.87800    
+      7     1.2216       0.88703    
+      8     1.2304       0.89511    
+     18     1.3157       0.97263    
+     19     1.3213       0.97802    
+     20     1.3262       0.98283    
+
+                         ****   MASS-X-PROFILE     ****
+   STAGE     ETBZ          STYRENE 
+      1    0.65783       0.34217    
+      2    0.57956       0.42044    
+      6    0.37007       0.62993    
+      7    0.34194       0.65806    
+      8    0.31700       0.68300    
+     18    0.81207E-01   0.91879    
+     19    0.65197E-01   0.93480    
+     20    0.50918E-01   0.94908    
+
+                         ****   MASS-Y-PROFILE     ****
+   STAGE     ETBZ          STYRENE 
+      1    0.72900       0.27100    
+      2    0.65783       0.34217    
+      6    0.44774       0.55226    
+      7    0.41712       0.58288    
+      8    0.38949       0.61051    
+     18    0.10679       0.89321    
+     19    0.86111E-01   0.91389    
+     20    0.67507E-01   0.93249    
+                
+                                 STREAM SECTION                                 
+
+ 1 10 2 3 4                                      
+ ----------
+
+ STREAM ID               1          10         2          3          4       
+ FROM :                  ----       B4         B1         B1         B1      
+ TO   :                  B1         ----       B2         B3         B4      
+
+ SUBSTREAM: MIXED   
+ PHASE:                  LIQUID     LIQUID     LIQUID     LIQUID     LIQUID 
+ COMPONENTS: KMOL/HR         
+   ETBZ                   0.3500  2.5145-02     0.3500     0.3500     0.3500
+   STYRENE                0.6500     0.4778     0.6500     0.6500     0.6500
+ COMPONENTS: KG/HR           
+   ETBZ                  37.1586     2.6696    37.1586    37.1586    37.1586
+   STYRENE               67.6985    49.7590    67.6985    67.6985    67.6985
+ TOTAL FLOW:     
+   KMOL/HR                1.0000     0.5029     1.0000     1.0000     1.0000
+   KG/HR                104.8571    52.4285   104.8571   104.8571   104.8571
+   L/HR                 124.9731    62.6427   124.9731   124.9731   124.9731
+ STATE VARIABLES:
+   TEMP   C              78.0000    91.9213    78.0000    78.0000    78.0000
+   PRES   ATM             0.2000     0.1934     0.2000     0.2000     0.2000
+   VFRAC                  0.0        0.0        0.0        0.0        0.0   
+   LFRAC                  1.0000     1.0000     1.0000     1.0000     1.0000
+   SFRAC                  0.0        0.0        0.0        0.0        0.0   
+ ENTHALPY:       
+   CAL/MOL             1.7437+04  2.6389+04  1.7437+04  1.7437+04  1.7437+04
+   CAL/GM               166.2963   253.1249   166.2963   166.2963   166.2963
+   KCAL/HR             1.7437+04  1.3271+04  1.7437+04  1.7437+04  1.7437+04
+ ENTROPY:        
+   CAL/MOL-K            -79.7068   -70.6964   -79.7068   -79.7068   -79.7068
+   CAL/GM-K              -0.7601    -0.6781    -0.7601    -0.7601    -0.7601
+ DENSITY:        
+   MOL/CC              8.0017-03  8.0281-03  8.0017-03  8.0017-03  8.0017-03
+   GM/CC                  0.8390     0.8369     0.8390     0.8390     0.8390
+ AVG MW                 104.8571   104.2523   104.8571   104.8571   104.8571
+                
+                                 STREAM SECTION                                 
+
+ 5 6 7 8 9                                       
+ ---------
+
+ STREAM ID               5          6          7          8          9       
+ FROM :                  B2         B2         B3         B3         B4      
+ TO   :                  ----       ----       ----       ----       ----    
+
+ SUBSTREAM: MIXED   
+ PHASE:                  LIQUID     LIQUID     LIQUID     LIQUID     LIQUID 
+ COMPONENTS: KMOL/HR         
+   ETBZ                   0.2800  7.0000-02     0.3035  4.6541-02     0.3249
+   STYRENE                0.1300     0.5200     0.1965     0.4535     0.1722
+ COMPONENTS: KG/HR           
+   ETBZ                  29.7269     7.4317    32.2175     4.9411    34.4890
+   STYRENE               13.5397    54.1588    20.4700    47.2285    17.9395
+ TOTAL FLOW:     
+   KMOL/HR                0.4100     0.5900     0.5000     0.5000     0.4971
+   KG/HR                 43.2666    61.5905    52.6875    52.1696    52.4285
+   L/HR                  51.8142    74.8155    62.9380    63.3175    62.7251
+ STATE VARIABLES:
+   TEMP   C              69.6350   103.7815    70.2172   104.0220    69.8588
+   PRES   ATM             0.1000     0.3000     0.1000     0.3000     0.1000
+   VFRAC                  0.0        0.0        0.0        0.0        0.0   
+   LFRAC                  1.0000     1.0000     1.0000     1.0000     1.0000
+   SFRAC                  0.0        0.0        0.0        0.0        0.0   
+ ENTHALPY:       
+   CAL/MOL             7864.6441  2.5109+04  9984.2529  2.5824+04  8685.1471
+   CAL/GM                74.5265   240.5317    94.7497   247.5035    82.3479
+   KCAL/HR             3224.5041  1.4814+04  4992.1265  1.2912+04  4317.3824
+ ENTROPY:        
+   CAL/MOL-K            -89.7738   -70.5604   -87.5836   -69.9591   -88.9201
+   CAL/GM-K              -0.8507    -0.6759    -0.8312    -0.6705    -0.8431
+ DENSITY:        
+   MOL/CC              7.9129-03  7.8861-03  7.9443-03  7.8967-03  7.9250-03
+   GM/CC                  0.8350     0.8232     0.8371     0.8239     0.8358
+ AVG MW                 105.5282   104.3907   105.3750   104.3392   105.4689
+         
+                             PROBLEM STATUS SECTION                             
+
+ BLOCK STATUS                            
+ ------------
+
+ ****************************************************************************
+ *                                                                          *
+ * Calculations were completed normally                                     *
+ *                                                                          *
+ * All Unit Operation blocks were completed normally                        *
+ *                                                                          *
+ * All streams were flashed normally                                        *
+ *                                                                          *
+ ****************************************************************************

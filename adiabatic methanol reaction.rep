@@ -1,0 +1,165 @@
+
+
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+                   ADIABATIC CONVERSION OF METHANOL VAPOR TO DME                   
+                              RUN CONTROL SECTION                               
+                ADIABATIC CONVERSION OF METHANOL VAPOR TO DME                   
+                               FLOWSHEET SECTION                                
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+ ---------------------------------
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   S1         ----       B1             S2         B1         ----    
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+ --------------------------------
+
+   BLOCK        INLETS                         OUTLETS
+   B1           S1                             S2                          
+
+ COMPUTATIONAL SEQUENCE                  
+ ----------------------
+
+ SEQUENCE USED WAS:
+    B1                                                                     
+
+ OVERALL FLOWSHEET BALANCE               
+ -------------------------
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                              IN          OUT       GENERATION   RELATIVE DIFF.
+   CONVENTIONAL COMPONENTS  
+           (KMOL/HR )
+      METHANOL            1.00000      0.137423     -0.862577     -0.832667E-16
+      DME                 0.00000      0.431288      0.431288       0.00000    
+      H2O                 0.00000      0.431288      0.431288       0.00000    
+   TOTAL BALANCE
+   MOLE(KMOL/HR )         1.00000       1.00000     -0.115142E-13   0.00000    
+   MASS(KG/HR   )         32.0422       32.0422                    0.887010E-15
+   ENTHALPY(KCAL/HR )    -46541.6      -46541.6                    0.213420E-07
+  
+                ADIABATIC CONVERSION OF METHANOL VAPOR TO DME                   
+                          PHYSICAL PROPERTIES SECTION                           
+
+ COMPONENTS                              
+ ----------
+
+  ID       TYPE  ALIAS          NAME
+   METHANOL C     CH4O           METHANOL                        
+   DME      C     C2H6O-1        DIMETHYL-ETHER                  
+   H2O      C     H2O            WATER                           
+
+                ADIABATIC CONVERSION OF METHANOL VAPOR TO DME                   
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B1       MODEL: RGIBBS          
+ ------------------------------
+   INLET STREAM:          S1      
+   OUTLET STREAM:         S2      
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                              IN          OUT       GENERATION   RELATIVE DIFF.
+   TOTAL BALANCE
+   MOLE(KMOL/HR )         1.00000       1.00000     -0.115142E-13   0.00000    
+   MASS(KG/HR   )         32.0422       32.0422                    0.887010E-15
+   ENTHALPY(KCAL/HR )    -46541.6      -46541.6                    0.213420E-07
+
+                          ***  INPUT DATA  ***
+
+   EQUILIBRIUM SPECIFICATIONS:                       
+     ONLY CHEMICAL EQUILIBRIUM IS CONSIDERED, THE FLUID PHASE IS VAPOR   
+     CALCULATED TEMPERATURE    C                              303.81    
+     TEMPERATURE FOR FREE ENERGY EVALUATION    C              303.81    
+     SYSTEM PRESSURE       ATM                                1.0000    
+     SPECIFIED DUTY        KCAL/HR                              0.0000    
+
+   FLUID PHASE SPECIES IN PRODUCT LIST:
+     METHANOL DME H2O    
+
+   ATOM MATRIX:   
+   ELEMENT      H    C    O   
+     METHANOL   4.00 1.00 1.00
+     DME        6.00 2.00 1.00
+     H2O        2.00 0.00 1.00
+
+                           ***  RESULTS  ***
+   TEMPERATURE           C                                    303.81    
+   PRESSURE              ATM                                  1.0000    
+   VAPOR FRACTION                                             1.0000    
+   NUMBER OF FLUID PHASES                                              1
+   
+                ADIABATIC CONVERSION OF METHANOL VAPOR TO DME                   
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B1       MODEL: RGIBBS (CONTINUED)          
+
+   FLUID PHASE MOLE FRACTIONS:   
+
+   PHASE              VAPOR   
+   OF TYPE            VAPOR   
+   PHASE FRACTION     1.000000    
+   PLACED IN STREAM   S2      
+     DME             0.4312884    
+     H2O             0.4312884    
+     METHANOL        0.1374231    
+
+   KMOL/HR            1.000000    
+   
+                ADIABATIC CONVERSION OF METHANOL VAPOR TO DME                   
+                                 STREAM SECTION                                 
+
+ S1 S2                                           
+ -----
+
+ STREAM ID               S1         S2      
+ FROM :                  ----       B1      
+ TO   :                  B1         ----    
+
+ SUBSTREAM: MIXED   
+ PHASE:                  VAPOR      VAPOR  
+ COMPONENTS: KMOL/HR         
+   METHANOL               1.0000     0.1374
+   DME                    0.0        0.4313
+   H2O                    0.0        0.4313
+ COMPONENTS: KG/HR           
+   METHANOL              32.0422     4.4033
+   DME                    0.0       19.8690
+   H2O                    0.0        7.7698
+ TOTAL FLOW:     
+   KMOL/HR                1.0000     1.0000
+   KG/HR                 32.0422    32.0422
+   L/HR                3.4722+04  4.7343+04
+ STATE VARIABLES:
+   TEMP   C             150.0000   303.8113
+   PRES   ATM             1.0000     1.0000
+   VFRAC                  1.0000     1.0000
+   LFRAC                  0.0        0.0   
+   SFRAC                  0.0        0.0   
+ ENTHALPY:       
+   CAL/MOL            -4.6542+04 -4.6542+04
+   CAL/GM             -1452.5119 -1452.5120
+   KCAL/HR            -4.6542+04 -4.6542+04
+ ENTROPY:        
+   CAL/MOL-K            -26.8945   -22.3563
+   CAL/GM-K              -0.8393    -0.6977
+ DENSITY:        
+   MOL/CC              2.8800-05  2.1122-05
+   GM/CC               9.2282-04  6.7681-04
+ AVG MW                  32.0422    32.0422
+
+                          PROBLEM STATUS SECTION                             
+
+ BLOCK STATUS                            
+ ------------
+
+ ****************************************************************************
+ *                                                                          *
+ * Calculations were completed normally                                     *
+ *                                                                          *
+ * All Unit Operation blocks were completed normally                        *
+ *                                                                          *
+ * All streams were flashed normally                                        *
+ *                                                                          *
+ ****************************************************************************

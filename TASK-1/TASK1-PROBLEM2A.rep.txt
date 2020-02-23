@@ -1,0 +1,349 @@
+			      	METHANE COOLING
+                                 HW1-PROBLEM2                                   
+                               FLOWSHEET SECTION                                
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+ ---------------------------------
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   S3         ----       B1             S1         ----       B1      
+   S2         B1         ----           S4         B1         ----    
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+ --------------------------------
+
+   BLOCK        INLETS                         OUTLETS
+   B1           S1 S3                          S2 S4                       
+
+ CONVERGENCE STATUS SUMMARY              
+ --------------------------
+
+   DESIGN-SPEC SUMMARY
+   ===================
+
+
+   DESIGN                                                            CONV
+   SPEC      ERROR        TOLERANCE    ERR/TOL      VARIABLE   STAT  BLOCK
+   ------    -----        ---------    -------      --------   ----  -----
+   DS-1      0.22227E-02  0.10000E-01  0.22227       68.495     #    $OLVER07
+
+   #  = CONVERGED
+   *  = NOT CONVERGED
+   LB = AT LOWER BOUNDS
+   UB = AT UPPER BOUNDS
+
+ DESIGN-SPEC:  DS-1                      
+ ------------------
+
+   SAMPLED VARIABLES:
+     TS4      : TEMPERATURE IN STREAM S4 SUBSTREAM MIXED    
+
+   SPECIFICATION:
+     MAKE TS4 APPROACH 50.0000   
+     WITHIN          0.0100000                                
+
+   MANIPULATED VARIABLES:
+     VARY     : H2O MOLEFLOW IN STREAM S3 SUBSTREAM MIXED   
+     LOWER LIMIT =          50.0000                   KMOL/HR         
+     UPPER LIMIT =      10,000.0                      KMOL/HR         
+     FINAL VALUE =          68.4946                   KMOL/HR         
+
+   VALUES OF ACCESSED FORTRAN VARIABLES:
+     VARIABLE      VALUE AT START      FINAL VALUE     UNITS
+                      OF LOOP                               
+     --------      --------------      -----------     -----
+     TS4             42.1958            50.0022        C               
+
+ CONVERGENCE BLOCK:  $OLVER07            
+ ----------------------------
+     SPECS: DS-1
+                                  
+                               FLOWSHEET SECTION                                
+
+ CONVERGENCE BLOCK:  $OLVER07 (CONTINUED)            
+     MAXIT=   30 STEP-SIZE=    1.0000    % OF RANGE
+                 MAX-STEP=       100.    % OF RANGE
+                 XTOL=       1.000000E-08
+     THE NEW ALGORITHM WAS USED WITH BRACKETING=NO      
+     METHOD: SECANT        STATUS: CONVERGED       
+     TOTAL NUMBER OF ITERATIONS:     4
+
+                          *** FINAL VALUES ***
+
+
+VAR#  MANIPUL/TEAR-VAR VARIABLE DESCRIPTION                              UNIT         VALUE       PREV VALUE       ERR/TOL
+----  ---------------- -------------------------                    ----------- ------------   ------------   ------------
+   1  H2O MOLEFLOW     S3.MIXED.H2O.MOLEFLOW                        KMOL/HR        68.4946        50.0000         0.2223      
+
+                          *** ITERATION HISTORY *** 
+
+     DESIGN-SPEC ID: DS-1                                                                                     
+     ITERATED:  H2O MOLEFLOW IN STREAM S3 SUBSTREAM MIXED   
+
+     ITERATION  VARIABLE         ERROR          ERR/TOL 
+     ---------  --------         -----          ------- 
+          1      100.0           -7.804         -780.4    
+          2      199.5           -16.34         -1634.    
+          3      50.00     LB     9.076          907.6    
+          4      68.49           0.2223E-02     0.2223    
+
+ COMPUTATIONAL SEQUENCE                  
+ ----------------------
+
+ SEQUENCE USED WAS:
+    $OLVER07 B1                                                            
+    (RETURN $OLVER07)                                                      
+
+ OVERALL FLOWSHEET BALANCE               
+ -------------------------
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    CONVENTIONAL COMPONENTS (KMOL/HR )
+       CH4                       20.0000         20.0000         0.00000    
+       H2O                       68.4946         68.4946         0.00000    
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            88.4946         88.4946         0.00000    
+       MASS(KG/HR   )            1554.80         1554.80         0.00000    
+       ENTHALPY(KCAL/HR )      -0.498932E+07   -0.498932E+07     0.00000    
+                                   
+                          PHYSICAL PROPERTIES SECTION                           
+
+ COMPONENTS                              
+ ----------
+
+  ID       TYPE  ALIAS          NAME
+   CH4      C     CH4            METHANE                         
+   H2O      C     H2O            WATER                           
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 5   
+                                                                    
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B1       MODEL: HEATX           
+ -----------------------------
+   HOT SIDE:
+   ---------
+   INLET STREAM:             S1      
+   OUTLET STREAM:            S2      
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+   COLD SIDE:
+   ----------
+   INLET STREAM:             S3      
+   OUTLET STREAM:            S4      
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            88.4946         88.4946         0.00000    
+       MASS(KG/HR   )            1554.80         1554.80         0.00000    
+       ENTHALPY(KCAL/HR )      -0.498932E+07   -0.498932E+07     0.00000    
+
+
+                          ***  INPUT DATA  ***
+
+   FLASH SPECS FOR HOT SIDE:
+   TWO    PHASE      FLASH
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+
+   FLASH SPECS FOR COLD SIDE:
+   TWO    PHASE      FLASH
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+
+   FLOW DIRECTION AND SPECIFICATION:
+     COUNTERCURRENT   HEAT EXCHANGER
+     SPECIFIED HOT OUTLET TEMP     
+     SPECIFIED VALUE                C                       90.0000
+     LMTD CORRECTION FACTOR                                  1.00000
+               
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B1       MODEL: HEATX (CONTINUED)           
+
+   PRESSURE SPECIFICATION:
+     HOT  SIDE PRESSURE DROP        ATM                      0.0000
+     COLD SIDE PRESSURE DROP        ATM                      0.0000
+
+   HEAT TRANSFER COEFFICIENT SPECIFICATION:
+     OVERALL COEFFICIENT            KCAL/HR-SQM-K          730.8684
+
+                        ***  OVERALL RESULTS  ***
+
+   STREAMS:
+                   --------------------------------------
+                   |                                    |
+   S1        ----->|                HOT                 |-----> S2      
+   T=  2.4000D+02  |                                    |       T=  9.0000D+01
+   P=  5.0000D+00  |                                    |       P=  5.0000D+00
+   V=  1.0000D+00  |                                    |       V=  1.0000D+00
+                   |                                    |
+   S4        <-----|                COLD                |<----- S3      
+   T=  5.0002D+01  |                                    |       T=  2.5000D+01
+   P=  5.0000D+00  |                                    |       P=  5.0000D+00
+   V=  0.0000D+00  |                                    |       V=  0.0000D+00
+                   --------------------------------------
+
+   DUTY AND AREA:
+     CALCULATED HEAT DUTY           KCAL/HR              30732.1060
+     CALCULATED (REQUIRED) AREA     SQM                      0.3608
+     ACTUAL EXCHANGER AREA          SQM                      0.3608
+     PER CENT OVER-DESIGN                                    0.0000
+
+   HEAT TRANSFER COEFFICIENT:
+     AVERAGE COEFFICIENT (DIRTY)    KCAL/HR-SQM-K          730.8684
+     UA (DIRTY)                     CAL/SEC-K               73.2547
+
+   LOG-MEAN TEMPERATURE DIFFERENCE:
+     LMTD CORRECTION FACTOR                                  1.0000
+     LMTD (CORRECTED)               C                      116.5345
+     NUMBER OF SHELLS IN SERIES                               1
+
+   PRESSURE DROP:
+     HOTSIDE, TOTAL                 ATM                      0.0000
+     COLDSIDE, TOTAL                ATM                      0.0000
+ 
+                              U-O-S BLOCK SECTION                               
+
+ HEATX COLD-TQCU B1       TQCURV INLET   
+ -------------------------------------
+   PRESSURE PROFILE:      CONSTANT2   
+   PRESSURE DROP:         0.0         ATM             
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+
+ -----------------------------------------------------
+ !  DUTY      !  PRES      !  TEMP      !  VFRAC     !
+ !            !            !            !            !
+ !            !            !            !            !
+ !            !            !            !            !
+ !  KCAL/HR   !  ATM       !  C         !            !
+ !            !            !            !            !
+ !============!============!============!============!
+ !     0.0    !     5.0000 !    50.0022 !     0.0    !
+ !  1463.4336 !     5.0000 !    48.8268 !     0.0    !
+ !  2926.8672 !     5.0000 !    47.6497 !     0.0    !
+ !  4390.3009 !     5.0000 !    46.4711 !     0.0    !
+ !  5853.7345 !     5.0000 !    45.2909 !     0.0    !
+ !------------+------------+------------+------------!
+ !  7317.1681 !     5.0000 !    44.1090 !     0.0    !
+ !  8780.6017 !     5.0000 !    42.9257 !     0.0    !
+ !  1.0244+04 !     5.0000 !    41.7408 !     0.0    !
+ !  1.1707+04 !     5.0000 !    40.5543 !     0.0    !
+ !  1.3171+04 !     5.0000 !    39.3664 !     0.0    !
+ !------------+------------+------------+------------!
+ !  1.4634+04 !     5.0000 !    38.1770 !     0.0    !
+ !  1.6098+04 !     5.0000 !    36.9861 !     0.0    !
+ !  1.7561+04 !     5.0000 !    35.7938 !     0.0    !
+ !  1.9025+04 !     5.0000 !    34.6000 !     0.0    !
+ !  2.0488+04 !     5.0000 !    33.4048 !     0.0    !
+ !------------+------------+------------+------------!
+ !  2.1952+04 !     5.0000 !    32.2082 !     0.0    !
+ !  2.3415+04 !     5.0000 !    31.0102 !     0.0    !
+ !  2.4878+04 !     5.0000 !    29.8108 !     0.0    !
+ !  2.6342+04 !     5.0000 !    28.6101 !     0.0    !
+ !  2.7805+04 !     5.0000 !    27.4080 !     0.0    !
+ !------------+------------+------------+------------!
+ !  2.9269+04 !     5.0000 !    26.2047 !     0.0    !
+ !  3.0732+04 !     5.0000 !    25.0000 !     0.0    !
+ -----------------------------------------------------
+             
+                              U-O-S BLOCK SECTION                               
+
+ HEATX HOT-TQCUR B1       TQCURV INLET   
+ -------------------------------------
+   PRESSURE PROFILE:      CONSTANT2   
+   PRESSURE DROP:         0.0         ATM             
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+
+ -----------------------------------------------------
+ !  DUTY      !  PRES      !  TEMP      !  VFRAC     !
+ !            !            !            !            !
+ !            !            !            !            !
+ !            !            !            !            !
+ !  KCAL/HR   !  ATM       !  C         !            !
+ !            !            !            !            !
+ !============!============!============!============!
+ !     0.0    !     5.0000 !   240.0000 !     1.0000 !
+ !  1463.4336 !     5.0000 !   233.5022 !     1.0000 !
+ !  2926.8672 !     5.0000 !   226.9497 !     1.0000 !
+ !  4390.3009 !     5.0000 !   220.3413 !     1.0000 !
+ !  5853.7345 !     5.0000 !   213.6753 !     1.0000 !
+ !------------+------------+------------+------------!
+ !  7317.1681 !     5.0000 !   206.9504 !     1.0000 !
+ !  8780.6017 !     5.0000 !   200.1650 !     1.0000 !
+ !  1.0244+04 !     5.0000 !   193.3174 !     1.0000 !
+ !  1.1707+04 !     5.0000 !   186.4061 !     1.0000 !
+ !  1.3171+04 !     5.0000 !   179.4293 !     1.0000 !
+ !------------+------------+------------+------------!
+ !  1.4634+04 !     5.0000 !   172.3855 !     1.0000 !
+ !  1.6098+04 !     5.0000 !   165.2729 !     1.0000 !
+ !  1.7561+04 !     5.0000 !   158.0898 !     1.0000 !
+ !  1.9025+04 !     5.0000 !   150.8345 !     1.0000 !
+ !  2.0488+04 !     5.0000 !   143.5053 !     1.0000 !
+ !------------+------------+------------+------------!
+ !  2.1952+04 !     5.0000 !   136.1005 !     1.0000 !
+ !  2.3415+04 !     5.0000 !   128.6186 !     1.0000 !
+ !  2.4878+04 !     5.0000 !   121.0578 !     1.0000 !
+ !  2.6342+04 !     5.0000 !   113.4169 !     1.0000 !
+ !  2.7805+04 !     5.0000 !   105.6944 !     1.0000 !
+ !------------+------------+------------+------------!
+ !  2.9269+04 !     5.0000 !    97.8891 !     1.0000 !
+ !  3.0732+04 !     5.0000 !    90.0000 !     1.0000 !
+ -----------------------------------------------------
+                            
+                                 STREAM SECTION                                 
+
+ S1 S2 S3 S4                                     
+ -----------
+
+ STREAM ID               S1         S2         S3         S4      
+ FROM :                  ----       B1         ----       B1      
+ TO   :                  B1         ----       B1         ----    
+
+ SUBSTREAM: MIXED   
+ PHASE:                  VAPOR      VAPOR      LIQUID     LIQUID 
+ COMPONENTS: KMOL/HR         
+   CH4                   20.0000    20.0000     0.0        0.0   
+   H2O                    0.0        0.0       68.4946    68.4946
+ COMPONENTS: KG/HR           
+   CH4                  320.8552   320.8552     0.0        0.0   
+   H2O                    0.0        0.0     1233.9493  1233.9493
+ TOTAL FLOW:     
+   KMOL/HR               20.0000    20.0000    68.4946    68.4946
+   KG/HR                320.8552   320.8552  1233.9493  1233.9493
+   L/HR                1.6843+05  1.1919+05  1241.4514  1272.7667
+ STATE VARIABLES:
+   TEMP   C             240.0000    90.0000    25.0000    50.0022
+   PRES   ATM             5.0000     5.0000     5.0000     5.0000
+   VFRAC                  1.0000     1.0000     0.0        0.0   
+   LFRAC                  0.0        0.0        1.0000     1.0000
+   SFRAC                  0.0        0.0        0.0        0.0   
+ ENTHALPY:       
+   CAL/MOL            -1.5687+04 -1.7223+04 -6.8262+04 -6.7814+04
+   CAL/GM              -977.8010 -1073.5828 -3789.1277 -3764.2222
+   KCAL/HR            -3.1373+05 -3.4446+05 -4.6756+06 -4.6449+06
+ ENTROPY:        
+   CAL/MOL-K            -17.1812   -20.7023   -38.9652   -37.5262
+   CAL/GM-K              -1.0710    -1.2904    -2.1629    -2.0830
+ DENSITY:        
+   MOL/CC              1.1874-04  1.6779-04  5.5173-02  5.3816-02
+   GM/CC               1.9050-03  2.6919-03     0.9940     0.9695
+ AVG MW                  16.0428    16.0428    18.0153    18.0153
+                                
+                             PROBLEM STATUS SECTION                             
+
+ BLOCK STATUS                            
+ ------------
+
+ ****************************************************************************
+ *                                                                          *
+ * Calculations were completed normally                                     *
+ *                                                                          *
+ * All Unit Operation blocks were completed normally                        *
+ *                                                                          *
+ * All streams were flashed normally                                        *
+ *                                                                          *
+ * All Convergence blocks were completed normally                           *
+ *                                                                          *
+ ****************************************************************************

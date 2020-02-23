@@ -1,0 +1,282 @@
+
+                             ETHANOL DECOMPOSITION                                                    
+                               FLOWSHEET SECTION                                
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+ ---------------------------------
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   S1         ----       B1             S3         B2         ----    
+   S4         B2         ----           S2         B1         B2      
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+ --------------------------------
+
+   BLOCK        INLETS                         OUTLETS
+   B2           S2                             S3 S4                       
+   B1           S1                             S2                          
+
+ CONVERGENCE STATUS SUMMARY              
+ --------------------------
+
+   DESIGN-SPEC SUMMARY
+   ===================
+
+
+   DESIGN                                                            CONV
+   SPEC      ERROR        TOLERANCE    ERR/TOL      VARIABLE   STAT  BLOCK
+   ------    -----        ---------    -------      --------   ----  -----
+   DS-1      0.17490E-02  0.75678E-02  0.23111      0.46359     #    $OLVER01
+
+   #  = CONVERGED
+   *  = NOT CONVERGED
+   LB = AT LOWER BOUNDS
+   UB = AT UPPER BOUNDS
+
+ DESIGN-SPEC:  DS-1                      
+ ------------------
+
+   SAMPLED VARIABLES:
+     DEE3     : DEE MOLEFLOW IN STREAM S3 SUBSTREAM MIXED   
+     DEE2     : DEE MOLEFLOW IN STREAM S2 SUBSTREAM MIXED   
+
+   SPECIFICATION:
+     MAKE DEE3 APPROACH 0.95*DEE2    
+     WITHIN 0.005*DEE2  
+
+   MANIPULATED VARIABLES:
+     VARY     : SENTENCE=PARAM VARIABLE=VFRAC IN UOS BLOCK B2   
+     LOWER LIMIT =           0.0                                      
+     UPPER LIMIT =           1.00000                                  
+     FINAL VALUE =           0.46359                                  
+
+   VALUES OF ACCESSED FORTRAN VARIABLES:
+     VARIABLE      VALUE AT START      FINAL VALUE     UNITS
+                      OF LOOP                               
+     --------      --------------      -----------     -----
+     DEE3            1.47066            1.43964        KMOL/HR         
+     DEE2            1.51357            1.51357        KMOL/HR         
+    
+                                                                                
+                               FLOWSHEET SECTION                                
+
+ CONVERGENCE BLOCK:  $OLVER01            
+ ----------------------------
+     SPECS: DS-1
+     MAXIT=   30 STEP-SIZE=    1.0000    % OF RANGE
+                 MAX-STEP=       100.    % OF RANGE
+                 XTOL=       1.000000E-08
+     THE NEW ALGORITHM WAS USED WITH BRACKETING=NO      
+     METHOD: SECANT        STATUS: CONVERGED       
+     TOTAL NUMBER OF ITERATIONS:     4
+
+                          *** FINAL VALUES ***
+
+
+VAR#  MANIPUL/TEAR-VAR VARIABLE DESCRIPTION                              UNIT         VALUE       PREV VALUE       ERR/TOL
+----  ---------------- -------------------------                    ----------- ------------   ------------   ------------
+   1  BLOCK-VAR        B2.PARAM.VFRAC                                               0.4636         0.4409         0.2311      
+
+                          *** ITERATION HISTORY *** 
+
+     DESIGN-SPEC ID: DS-1                                                                                     
+     ITERATED:  SENTENCE=PARAM VARIABLE=VFRAC IN UOS BLOCK B2   
+
+     ITERATION  VARIABLE         ERROR          ERR/TOL 
+     ---------  --------         -----          ------- 
+          1     0.5000           0.3276E-01      4.329    
+          2     0.5100           0.3831E-01      5.063    
+          3     0.4409          -0.3032E-01     -4.006    
+          4     0.4636           0.1749E-02     0.2311    
+
+ COMPUTATIONAL SEQUENCE                  
+ ----------------------
+
+ SEQUENCE USED WAS:
+    B1                                                                     
+    $OLVER01 B2                                                            
+    (RETURN $OLVER01)                                                      
+
+ OVERALL FLOWSHEET BALANCE               
+ -------------------------
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                              IN          OUT       GENERATION   RELATIVE DIFF.
+   CONVENTIONAL COMPONENTS  
+           (KMOL/HR )
+      ETHANOL             3.60000      0.572862      -3.02714     -0.198051E-12
+      DEE                 0.00000       1.51357       1.51357      0.245184E-11
+      H2O                 0.00000       1.51357       1.51357     -0.198049E-11
+   TOTAL BALANCE
+   MOLE(KMOL/HR )         3.60000       3.60000      0.179544E-12   0.00000    
+   MASS(KG/HR   )         165.849       165.849                    0.112385E-11
+   ENTHALPY(KCAL/HR )    -191674.      -229491.                    0.164785    
+     
+                                                                                
+                          PHYSICAL PROPERTIES SECTION                           
+
+ COMPONENTS                              
+ ----------
+
+  ID       TYPE  ALIAS          NAME
+   ETHANOL  C     C2H6O-2        ETHANOL                         
+   DEE      C     C4H10O-5       DIETHYL-ETHER                   
+   H2O      C     H2O            WATER                           
+    
+                                                                                
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B1       MODEL: RGIBBS          
+ ------------------------------
+   INLET STREAM:          S1      
+   OUTLET STREAM:         S2      
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                              IN          OUT       GENERATION   RELATIVE DIFF.
+   TOTAL BALANCE
+   MOLE(KMOL/HR )         3.60000       3.60000      0.179544E-12   0.00000    
+   MASS(KG/HR   )         165.849       165.849                   -0.111391E-13
+   ENTHALPY(KCAL/HR )    -191674.      -191674.                    0.987098E-09        
+
+                          ***  INPUT DATA  ***
+
+   EQUILIBRIUM SPECIFICATIONS:                       
+     ONLY CHEMICAL EQUILIBRIUM IS CONSIDERED, THE FLUID PHASE IS VAPOR   
+     CALCULATED TEMPERATURE    C                              270.65    
+     TEMPERATURE FOR FREE ENERGY EVALUATION    C              270.65    
+     SYSTEM PRESSURE       ATM                                1.0000    
+     SPECIFIED DUTY        KCAL/HR                              0.0000    
+
+   FLUID PHASE SPECIES IN PRODUCT LIST:
+     ETHANOL DEE H2O 
+
+   ATOM MATRIX:   
+   ELEMENT      H    C    O   
+     ETHANOL    6.00 2.00 1.00
+     DEE       10.00 4.00 1.00
+     H2O        2.00 0.00 1.00
+
+                           ***  RESULTS  ***
+   TEMPERATURE           C                                    270.65    
+   PRESSURE              ATM                                  1.0000    
+   VAPOR FRACTION                                             1.0000    
+   NUMBER OF FLUID PHASES                                              1
+ 
+                                                                                
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B1       MODEL: RGIBBS (CONTINUED)          
+
+   FLUID PHASE MOLE FRACTIONS:   
+
+   PHASE              VAPOR   
+   OF TYPE            VAPOR   
+   PHASE FRACTION     1.000000    
+   PLACED IN STREAM   S2      
+     H2O             0.4204358    
+     DEE             0.4204358    
+     ETHANOL         0.1591284    
+
+   KMOL/HR            3.600000    
+
+ BLOCK:  B2       MODEL: FLASH2          
+ ------------------------------
+   INLET STREAM:          S2      
+   OUTLET VAPOR STREAM:   S3      
+   OUTLET LIQUID STREAM:  S4      
+   PROPERTY OPTION SET:   NRTL      RENON (NRTL) / IDEAL GAS                    
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            3.60000         3.60000         0.00000    
+       MASS(KG/HR   )            165.849         165.849        0.113499E-11
+       ENTHALPY(KCAL/HR )       -191674.        -229491.        0.164785           
+
+                          ***  INPUT DATA  ***
+   TWO    PHASE  PV  FLASH
+   SPECIFIED PRESSURE    ATM                                 1.00000    
+   VAPOR FRACTION                                            0.46359    
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 8   
+                                                                                
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  B2       MODEL: FLASH2 (CONTINUED)          
+
+                           ***  RESULTS  ***
+   OUTLET TEMPERATURE    C                                    40.283    
+   OUTLET PRESSURE       ATM                                  1.0000    
+   HEAT DUTY             KCAL/HR                             -37817.    
+   VAPOR FRACTION                                            0.46359    
+
+
+
+   V-L PHASE EQUILIBRIUM : 
+
+      COMP              F(I)           X(I)           Y(I)           K(I)      
+      ETHANOL          0.15913        0.23255        0.74178E-01    0.31897    
+      DEE              0.42044        0.38284E-01    0.86261         22.531    
+      H2O              0.42044        0.72917        0.63208E-01    0.86684E-01
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 9   
+                                                                                
+                                 STREAM SECTION                                 
+
+ S1 S2 S3 S4                                     
+ -----------
+
+ STREAM ID               S1         S2         S3         S4      
+ FROM :                  ----       B1         B2         B2      
+ TO   :                  B1         B2         ----       ----    
+
+ SUBSTREAM: MIXED   
+ PHASE:                  VAPOR      VAPOR      VAPOR      LIQUID 
+ COMPONENTS: KMOL/HR         
+   ETHANOL                3.6000     0.5729     0.1238     0.4491
+   DEE                    0.0        1.5136     1.4396  7.3929-02
+   H2O                    0.0        1.5136     0.1055     1.4081
+ COMPONENTS: KG/HR           
+   ETHANOL              165.8485    26.3912     5.7032    20.6880
+   DEE                    0.0      112.1900   106.7101     5.4799
+   H2O                    0.0       27.2674     1.9004    25.3670
+ TOTAL FLOW:     
+   KMOL/HR                3.6000     3.6000     1.6689     1.9311
+   KG/HR                165.8485   165.8485   114.3137    51.5348
+   L/HR                1.3386+05  1.6064+05  4.2923+04    59.6194
+ STATE VARIABLES:
+   TEMP   C             180.0000   270.6506    40.2832    40.2832
+   PRES   ATM             1.0000     1.0000     1.0000     1.0000
+   VFRAC                  1.0000     1.0000     1.0000     0.0   
+   LFRAC                  0.0        0.0        0.0        1.0000
+   SFRAC                  0.0        0.0        0.0        0.0   
+ ENTHALPY:       
+   CAL/MOL            -5.3243+04 -5.3243+04 -5.9355+04 -6.7544+04
+   CAL/GM             -1155.7195 -1155.7195  -866.5481 -2530.9654
+   KCAL/HR            -1.9167+05 -1.9167+05 -9.9058+04 -1.3043+05
+ ENTROPY:        
+   CAL/MOL-K            -46.0771   -42.0771   -92.2033   -51.1427
+   CAL/GM-K              -1.0002    -0.9133    -1.3461    -1.9164
+ DENSITY:        
+   MOL/CC              2.6894-05  2.2410-05  3.8882-05  3.2390-02
+   GM/CC               1.2390-03  1.0324-03  2.6632-03     0.8644
+ AVG MW                  46.0690    46.0690    68.4954    26.6871
+ ASPEN PLUS   PLAT: WINDOWS   VER: 36.0                   02/03/2020  PAGE 10  
+                                                                                
+                             PROBLEM STATUS SECTION                             
+
+ BLOCK STATUS                            
+ ------------
+
+ ****************************************************************************
+ *                                                                          *
+ * Calculations were completed normally                                     *
+ *                                                                          *
+ * All Unit Operation blocks were completed normally                        *
+ *                                                                          *
+ * All streams were flashed normally                                        *
+ *                                                                          *
+ * All Convergence blocks were completed normally                           *
+ *                                                                          *
+ ****************************************************************************

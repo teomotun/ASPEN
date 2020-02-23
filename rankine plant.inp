@@ -1,0 +1,114 @@
+;
+;Input Summary created by Aspen Plus Rel. 36.0 at 19:10:08 Mon Feb 3, 2020
+;Directory C:\Users\teomotun\Documents\AspenTech\Aspen Plus V10.0  Filename C:\Users\teomotun\Desktop\rankine plant.inp
+;
+
+
+DYNAMICS
+    DYNAMICS RESULTS=ON
+
+TITLE 'Rankine Powerplant' 
+
+IN-UNITS ENG SHORT-LENGTH=in 
+
+DEF-STREAMS CONVEN ALL 
+
+MODEL-OPTION 
+
+DESCRIPTION "
+    Chemical Simulation with English Units : 
+    F, psi, lb/hr, lbmol/hr, Btu/hr, cuft/hr. 
+      
+    Property Method: NRTL 
+      
+    Flow basis for input: Mole 
+      
+    Stream report composition: Mole flow 
+    "
+
+DATABANKS 'APV100 PURE36' / 'APV100 AQUEOUS' / 'APV100 SOLIDS' &
+         / 'APV100 INORGANIC' / 'APESV100 AP-EOS' /  &
+        'NISTV100 NIST-TRC' / NOASPENPCD
+
+PROP-SOURCES 'APV100 PURE36' / 'APV100 AQUEOUS' /  &
+        'APV100 SOLIDS' / 'APV100 INORGANIC' / 'APESV100 AP-EOS' &
+         / 'NISTV100 NIST-TRC'
+
+COMPONENTS 
+    CH4 CH4 / 
+    O2 O2 / 
+    CO2 CO2 / 
+    H2O H2O / 
+    N2 N2 
+
+SOLVE 
+    RUN-MODE MODE=SIM 
+
+FLOWSHEET 
+    BLOCK B1 IN=1 OUT=2 
+    BLOCK B2 IN=8 2 OUT=9 3 
+    BLOCK B3 IN=3 Q OUT=4 
+    BLOCK B4 IN=4 OUT=5 
+    BLOCK B5 IN=5 OUT=6 
+    BLOCK B6 IN=7 OUT=8 Q 
+
+PROPERTIES STEAM-TA 
+    PROPERTIES NRTL 
+
+STREAM 1 
+    SUBSTREAM MIXED PRES=60. VFRAC=0. MASS-FLOW=14850. 
+    MASS-FRAC CH4 0. / O2 0. / CO2 0. / H2O 1. / N2 0. 
+
+STREAM 7 
+    SUBSTREAM MIXED TEMP=70. PRES=1. MOLE-FLOW=500. 
+    MOLE-FRAC CH4 0.0909 / O2 0.1909 / CO2 0. / H2O 0. /  &
+        N2 0.7182 
+
+DEF-STREAMS HEAT Q
+
+BLOCK B3 HEATER 
+    PARAM PRES=600. DPPARMOPT=NO 
+
+BLOCK B5 HEATER 
+    PARAM PRES=1. <atm> VFRAC=0. DPPARMOPT=NO 
+
+BLOCK B2 HEATX 
+    PARAM T-HOT=320. U-OPTION=CONSTANT 
+    FEEDS HOT=8 COLD=2 
+    OUTLETS-HOT 9 
+    OUTLETS-COLD 3 
+    HEAT-TR-COEF U=100. 
+    HOT-SIDE DPPARMOPT=NO 
+    COLD-SIDE DPPARMOPT=NO 
+    TQ-PARAM CURVE=YES 
+
+BLOCK B6 RSTOIC 
+    PARAM TEMP=900. PRES=1. <atm> 
+    STOIC 1 MIXED CH4 -1. / O2 -2. / CO2 1. / H2O 2. 
+    CONV 1 MIXED CH4 1. 
+
+BLOCK B1 PUMP 
+    PARAM PRES=600. EFF=0.7 DEFF=1. 
+
+BLOCK B4 COMPR 
+    PARAM TYPE=ISENTROPIC PRES=60. NPHASE=2 SB-MAXIT=30  &
+        SB-TOL=0.0001  MODEL-TYPE=TURBINE 
+    BLOCK-OPTION FREE-WATER=NO 
+
+DESIGN-SPEC DS-1 
+    DEFINE T4 STREAM-VAR STREAM=4 SUBSTREAM=MIXED VARIABLE=TEMP  &
+        UOM="F" 
+    SPEC "T4" TO "800" 
+    TOL-SPEC "0.5" 
+    VARY STREAM-VAR STREAM=7 SUBSTREAM=MIXED VARIABLE=MOLE-FLOW  &
+        UOM="lbmol/hr" 
+    LIMITS "300" "1000" 
+
+EO-CONV-OPTI 
+
+STREAM-REPOR MOLEFLOW 
+;
+;
+;
+;
+;
